@@ -1,8 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.navbar-light .navbar-nav .nav-link {
+  color: black !important;
 }
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #457B9D !important;
+}
+
+
+#mainNavbar {
+  padding-right: 5%;
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.nav-item{
+  padding: 0% 3% !important;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #457B9D;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 7px;
+  margin-right: 5px;
+}
+
+.nav-link {
+  overflow: hidden;
+    white-space: nowrap;
+}
+
+.special-btn {
+  border: none;
+  background: #1D3557;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  margin: auto;
+  margin: 0 auto; 
+  display: block;
+}
+.special-btn:hover,
+.special-btn:focus {
+  color: #1D3557 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background-color: #F1FAEE;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+.ui-helper-hidden-accessible { display:none; }
+
+
+.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 10px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+  }
+  
+  .ui-autocomplete > li > div {
+    display: block;
+    padding: 10px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.72857143;
+    white-space: nowrap;
+    color: black !important;
+  }
+  
+  .ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+.ui-state-hover,
+.ui-state-active,
+.ui-state-focus {
+    font-weight: bold;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+  
+  a {
+      color: black !important;
+      text-decoration: none !important;
+  }
+
+  .ui-corner-all {
+    font-family: 'Montserrat', sans-serif !important;
+    margin-left: 3px;
+    padding: 10px 0px;
+  }
+
+  @import 'https://fonts.googleapis.com/css?family=Montserrat';
+  @import 'https://fonts.googleapis.com/css?family=Lato';
+
+.hover {
+  font-size: 36px !important;
+  color: #2A4C7D !important;
+}
+
+.example {
+  width: fit-content !important;
+}
+  
+.example .hover {
+    transition: all 0.1s ease-in-out;
+    padding: 0%;
+    position: relative;
+  }
+.example .hover:before,.example .hover:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    width: 0px;
+    height: 5px;
+    margin: 5px 0 0;
+    transition: all 0.1s ease-in-out;
+    transition-duration: 0.4s;
+    opacity: 0;
+    background-color: #2A4C7D;
+  }
+  .example .hover.hover-1:before,.example .hover.hover-1:after {
+    left: 0;
+  }
+.example:hover .hover:before,.example:hover .hover:after {
+    width: 100%;
+    opacity: 1;
+}
+

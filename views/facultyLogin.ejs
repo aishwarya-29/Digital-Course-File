@@ -1,0 +1,25 @@
+<%- include ("./partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/studentLogin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/facultyLogin.css">
+</head>
+<div class="login">
+    <h3>FACULTY LOGIN</h3>
+    <form style="padding-top: 80px;" method="POST" action="/admin">
+        <label for="email">EMAIL</label>
+        <div class="form-group">
+            <input type="text" name="email" id="email">
+        </div>
+        <label for="password">PASSWORD</label>
+        <div class="form-group">
+            <input type="password" name="password" id="password">
+        </div>
+        <div><button class="btn btn-dark" type="submit" class="submit-btn">Login</button> </div>
+    </form>
+    <div class="container" id="options">
+        <a>Forgot password?</a>
+    </div>
+</div>
+
+<%- include ("./partials/footer") %>

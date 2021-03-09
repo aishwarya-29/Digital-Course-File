@@ -1,0 +1,62 @@
+<%- include ("./partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/studentLogin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<div class="container" id="signin">
+    <div class="login" id="option1">
+        <h1>SIGN IN</h1>
+        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+    </div>
+    <div class="dummy">
+    <div class="login" id="option2">
+        <form style="padding-top: 100px;">
+            <label for="email">EMAIL</label>
+            <div class="form-group">
+                <input type="text" name="email" id="email">
+            </div>
+            <label for="password">PASSWORD</label>
+            <div class="form-group">
+                <input type="password" name="password" id="password">
+            </div>
+            <button class="btn btn-dark" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle">Sign Up</a> 
+        </form>
+        <div class="container" id="options">
+            <a>Forgot password?</a> <br>
+            <a id="a" href="/faculty/login">Faculty Login</a>
+        </div>
+    </div>
+    <div class="login" id="option3">
+        <form>
+            <label for="name">NAME (or Roll Number)</label>
+            <div class="form-group">
+                <input type="text" name="name" id="name">
+            </div>
+            <label for="email">EMAIL</label>
+            <div class="form-group">
+                <input type="text" name="email" id="email">
+            </div>
+            <label for="password">PASSWORD</label>
+            <div class="form-group">
+                <input type="password" name="password" id="password">
+            </div>
+            <label for="password">RE-ENTER PASSWORD</label>
+            <div class="form-group">
+                <input type="password" name="password2" id="password2">
+            </div>
+            <button type="submit" class="btn btn-dark" >Register</button>  <span id="temp">or</span> <a id="toggle2">Sign In</a> 
+        </form>
+        </div>
+</div>
+</div>
+<%- include ("./partials/footer") %>
+<script>
+    if (screen && screen.width > 900) {
+    document.write('<script type="text/javascript" src="../javascripts/studentLoginWeb.js"><\/script>');}
+</script>
+    
+<script>
+    if (screen && screen.width < 900) {
+    document.write('<script type="text/javascript" src="../javascripts/studentLoginMobile.js"><\/script>');}
+</script>
