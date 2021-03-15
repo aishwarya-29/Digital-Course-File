@@ -3,11 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var dbSetup = require('./db_setup');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+var database = dbSetup;
+
+// var ref = database.ref("/users/student");
+// ref.once("value", function(snapshot) {
+//   var data = snapshot.val();
+//   console.log(data);
+// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

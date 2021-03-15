@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "digitalcoursefile-efa96",
+    "private_key_id": "d27a6a2204e36d85da075cf10b938a57f497425a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC6Id8vkYnFshzq\nnsRPgsHvJelZKZffudiEi93q5IQJq9KXXR1t/Lx1q+oD4big+BHtyNfCPPoMW9xQ\nrfRMgITWZtDweubbcBvVK/ruV5Uvc/0iiLHNrlzaTl4FD/94XKYOizUFVlmL+WuC\nWM5e0P1FE7wnmIvIeaKPPsVBg+IQZkqNKMRDX2OpbBTo8Hpek6j2gYmpjh2Jzcdb\nNIQD7yU1wAhdtq1GkaQY/5exsEP+PrU+3b2boopHxKW2dz8WztALN4hEWFubEVhV\nQvkvDR5TBLbWm3WuWZ6AGC1h0UJ7/9G1nblx0Bjn6r1jNOgeF1LEZiU2tDcmix4n\nmXDcmAlXAgMBAAECggEAPDV7vCfwcI5akzxzVSL/d8wELS7qrVixJMMXsIVl/rjh\ngMwCmpMAJXJMWyAXeJ52MjxfKrpNylSmskRq+5oxHieZG8ktxzr/DdhRreqP3A9B\niXu9RELMT2O9Pxb7NSSHJLo8FvNlOQWgFMSEUSB6ZO9q1EYgpWNPRdXwue4e4N2f\nwvjF5mPSIdLf777ZCOlXzcON3n4Q3/eBjaO2ZWwyLRqntpUzcMU0Y235hHtzWxJd\nNJ3Rej8xoJl7MtuWa0bg4tQmocG1Lq9Kc8rNKlIIH06UtC2nCdakcJs6txB3e73M\nEF7+UQ01yZc6s55KUhXP9D6jngGk6VlliA/MiQdEYQKBgQD0+36gKCMTQ+Vw1vHT\nbz++fAYHlcnzG7TqnCZw9D0Nl6wjDZVUaJkFvml0BCmRsJDadAYnno1jihDz7lo7\nnwuNzesM7KbI2Dllzc861Gc6R6VCv4O5Ivby0+KAVkyCO/KwM3exMno2UjTNl+yI\nMy0TzILtADPgD4K1/brSxszI4QKBgQDCgNShkk/dS3XYrtM/mXh8GUSuvSRBD0SE\nEoBULBKVF9JNbWQPMwNPStEz2QkWIJ2jvT0OrdC2qAZOoS15ujMv3RpTXF/78sKu\nKUUuEky+AftETzE//TvFbu3gK5JLGcxGPBo51HVsQcKEH1eXQygxskUMBRikACO3\nuBmTg9ABNwKBgQCT10odYNt5/tlx9WVO0a5ISBRjc3PCMJBHnSBdvicyErwhE0tw\n+waNvtFo4DIt574i9y3XrwlobqO4cbkmjd6tHv2geRhV0Jci5scOm6wIMcB7vZPC\noGUjOddQ18OoPIFC8GxlFS9HpOiUwgBOWYP0lNDWMe8cYn/hUFP0a2CeQQKBgFHy\nraOVXYjDLleo8OAu7RB8JO/qSMgQgrGSifbsyrd+XeC5Yhr1R0O1JgdOPgHQpBpE\ntODmYrVSfbXLOrm6ta5I3bqZhOdGFLgEM12B4Et90jupkfp/2xsH7bkxImX57JL6\n56HN3dtKqYW5HtJgPSMTFPxHeWY/mMzjCAOa2ZxpAoGBAO5xejIQstjIHuWjg9Sv\nwMtbvEcRaWkaRfJXlguRBLJ128CdEWtUh2+l6xQfNab2ZJrspbyDv9fMAcKxCSzB\nyYbcAfa13fzB3i4Lpv+hpJUPqf7LXkrXgysml0M0hXcCNsbHVuoF2+FT7xLQ064H\n5aYLxqn8AXauzk4dJ5iOtOFU\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-ki9kp@digitalcoursefile-efa96.iam.gserviceaccount.com",
+    "client_id": "117288466875174993489",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ki9kp%40digitalcoursefile-efa96.iam.gserviceaccount.com"
+  }
+  
