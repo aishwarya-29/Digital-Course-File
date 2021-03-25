@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-//var database = require('../db_setup');
-var database = require('firebase');
-var admin = require('../db_admin_setup');
+var firebase = require('firebase');
+var admin = firebase.database();
 
 
 /* GET users listing. */
@@ -39,7 +38,29 @@ router.post('/student/new', function(req,res,next) {
     password: password
   }).then(function(userRecord) {
     console.log(userRecord);
+  });
+
+  firebase.auth.createUserWithEmailAndPassword(email, password)
+    .then(newUser => {
+      console.log(newUser);
+    });
+  
     res.redirect("/users/student/login");
+});
+
+router.post('/student/login', function(req,res,next){
+  var email = req.body.email;
+  var password = req.body.password;
+  firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    console.log(user);
+    res.redirect("/");
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
   });
 });
 
