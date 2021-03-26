@@ -18,6 +18,14 @@ router.get('/faculty/login', function(req,res,next){
   res.render('users/facultyLogin');
 });
 
+router.get('/student/profile', function(req,res,next){
+  res.render('users/studentProfile');
+});
+
+router.get('/faculty/profile', function(req,res,next){
+  res.render('users/facultyProfile');
+});
+
 router.post('/student/new', function(req,res,next) {
   var name = req.body.name;
   var email = req.body.email;

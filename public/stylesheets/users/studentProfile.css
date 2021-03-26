@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+}
+
+.d{
+  display: inline-block;
+}
+
+.photo {
+    font-family:'Courier New', Courier, monospace;
+    font-size: larger;
+    font-weight: bold;
+    padding: 10px;
+    color: black !important;
+  }
+.photo:hover {
+    color: #457B9D !important;
+  }
+
+.edit{
+  display: inline-block;
+  float: right;
+}
+
+.btn {
+    border-radius:12px;
+    background-color: #457B9D;  
+    float:right;
+}
+
+.btn:hover{
+    background-color: aliceblue;
+    border:2px solid #457B9D;
+}
+  
