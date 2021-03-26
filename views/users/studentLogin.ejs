@@ -11,7 +11,7 @@
     </div>
     <div class="dummy">
     <div class="login" id="option2">
-        <form style="padding-top: 100px;">
+        <form style="padding-top: 100px;" method="POST" action = "../student/login">
             <label for="email">EMAIL</label>
             <div class="form-group">
                 <input type="text" name="email" id="email">
@@ -20,11 +20,11 @@
             <div class="form-group">
                 <input type="password" name="password" id="password">
             </div>
-            <button class="btn btn-dark" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle">Sign Up</a> 
+            <button type = "submit" class="btn btn-dark" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle">Sign Up</a> 
         </form>
         <div class="container" id="options">
             <a>Forgot password?</a> <br>
-            <a id="a" href="user/faculty/login">Faculty Login</a>
+            <a id="a" href="../faculty/login">Faculty Login</a>
         </div>
     </div>
     <div class="login" id="option3">

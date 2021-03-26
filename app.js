@@ -10,14 +10,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-var database = dbSetup;
-
-// var ref = database.ref("/users/student");
-// ref.once("value", function(snapshot) {
-//   var data = snapshot.val();
-//   console.log(data);
-// })
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
