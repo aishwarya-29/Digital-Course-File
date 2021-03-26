@@ -4,9 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dbSetup = require('./db_setup');
+var firebase = require('firebase');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var courseRouter = require('./routes/course');
+const e = require('express');
 
 var app = express();
 
@@ -20,8 +23,34 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// set user
+app.use(function(req, res, next) {
+  var user = firebase.auth().currentUser;
+  res.locals.user = null;
+  if(user) {
+    var users = firebase.database().ref('/users');
+    users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      console.log(data);
+      for(var rno in data) {
+        console.log(data[rno].email);
+        console.log(user.email);
+        var em = data[rno].email;
+        if(em.localeCompare(user.email) == 0) {
+          res.locals.user = data[rno];
+        }
+      }
+    });
+    res.locals.userEmail = user;
+  }
+    console.log(res.locals.user);
+    
+    next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/course', courseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,5 +67,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error.jade');
 });
+
+
 
 module.exports = app;

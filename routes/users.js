@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
-var admin = firebase.database();
-
+var admin = require('firebase-admin');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,10 +17,12 @@ router.get('/faculty/login', function(req,res,next){
 });
 
 router.post('/student/new', function(req,res,next) {
-  var name = req.body.name;
+  console.log(req.body);
+  var rno = req.body.rno;
   var email = req.body.email;
   var password = req.body.password;
   var password2 = req.body.password2;
+  console.log(rno);
 
   if(password != password2) {
     // --------------------- ERROR -----------------------
@@ -33,19 +34,19 @@ router.post('/student/new', function(req,res,next) {
     // password length not sufficient
   }
 
-  admin.auth().createUser({
-    email: email,
-    password: password
-  }).then(function(userRecord) {
-    console.log(userRecord);
-  });
-
-  firebase.auth.createUserWithEmailAndPassword(email, password)
+  firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(newUser => {
-      console.log(newUser);
+      //console.log(newUser);
     });
   
-    res.redirect("/users/student/login");
+  firebase.database().ref('users/' + rno).set({
+    rollNumber: rno,
+    email: email,
+    password: password,
+    type: "Student"
+  });
+  
+    res.redirect("/");
 });
 
 router.post('/student/login', function(req,res,next){

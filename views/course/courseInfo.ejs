@@ -1,0 +1,16 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/course/courseInfo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<h1 id="title"> <%= course.courseID %> - <%= course.courseName %></h1>
+<div id="aboutCourse">
+    <h7><strong>Course ID - </strong><%= course.courseID %></h7> <br>
+    <h7><strong>Course Name -</strong> <%= course.courseName %></h7> <br>
+    <h7><strong>Credits -</strong> <%= course.credits %></h7> <br>
+    <h7><strong>Department ID -</strong> <%= course.deptID %></h7> <br>
+    <strong></strong>
+</div>
+
+<%- include ("../partials/footer") %>

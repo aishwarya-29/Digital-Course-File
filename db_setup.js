@@ -91,30 +91,6 @@ module.exports = firebase;
 //     deptID: "CHM18"
 //   }
 // ])
-
-// var ref = database.ref("/users/student");
-
-// ref.set([
-//     {
-//         id:20,
-//         name:"Jane Doe",
-//         email:"jane@doe.com",
-//         website:"https://jane.foo.bar"
-//     },
-//     {
-//         id:21,
-//         name:"John doe",
-//         email:"john@doe.com",
-//         website:"https://foo.bar"
-//     }
-// ]);
-
-// ref.push({
-//     id:22,
-//     name:"Jane Doe",
-//     email:"jane@doe.com",
-//     website:"https://jane.foo.bar"
-// });
     
 //  ref.once("value", function(snapshot) {
 //     var data = snapshot.val();   //Data is in JSON format.
