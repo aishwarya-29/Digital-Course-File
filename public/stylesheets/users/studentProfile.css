@@ -10,7 +10,7 @@
 }
 
 .photo {
-    font-family:'Courier New', Courier, monospace;
+  font-family: 'Montserrat', sans-serif; 
     font-size: larger;
     font-weight: bold;
     padding: 10px;
@@ -26,6 +26,7 @@
 }
 
 .btn {
+  font-family: 'Montserrat', sans-serif; 
     border-radius:12px;
     background-color: #457B9D;  
     float:right;
