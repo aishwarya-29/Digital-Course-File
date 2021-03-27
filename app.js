@@ -31,10 +31,7 @@ app.use(function(req, res, next) {
     var users = firebase.database().ref('/users');
     users.on('value', (snapshot) => {
       var data = snapshot.val();
-      console.log(data);
       for(var rno in data) {
-        console.log(data[rno].email);
-        console.log(user.email);
         var em = data[rno].email;
         if(em.localeCompare(user.email) == 0) {
           res.locals.user = data[rno];
@@ -43,7 +40,6 @@ app.use(function(req, res, next) {
     });
     res.locals.userEmail = user;
   }
-    console.log(res.locals.user);
     
     next();
 });
