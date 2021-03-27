@@ -22,13 +22,15 @@
 
 .edit{
   display: inline-block;
+  font-weight: bolder;
   float: right;
 }
 
 .btn {
   font-family: 'Montserrat', sans-serif; 
     border-radius:12px;
-    background-color: #457B9D;  
+    background-color: #A8DADC
+    ;  
     float:right;
 }
 
