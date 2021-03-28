@@ -11,3 +11,29 @@
     background-color: #A8DADC;
     padding: 15px;
 }
+
+#basicDocs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5%;
+}
+
+.doc {
+    background-color: #F1FAEE;
+    width: 250px;
+    height: 250px;
+    border: #A8DADC 3px solid;
+    cursor: pointer;
+}
+
+.preview {
+    width: 100%;
+    height: 90%;
+}
+
+.aboutDoc {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}

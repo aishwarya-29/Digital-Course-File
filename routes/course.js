@@ -14,14 +14,26 @@ router.get("/", function(req,res,next){
 
 router.get("/:courseID", function(req,res,next){
     var courseID = req.params.courseID;
-    var ref = database.ref("/courses");
-    ref.orderByChild("courseID").equalTo(courseID).on("value", function(snapshot){
-        console.log(snapshot.val());
-        // res.send(snapshot.val());
-        res.render('course/courseInfo', {course: snapshot.val()[0]});
-    }, function (error) {
-        console.log("Error: " + error.code);
-     });
+    var ref = firebase.database().ref('/course/' + courseID);
+        ref.on('value', (snapshot) => {
+        var data = snapshot.val();
+        console.log(data);
+        res.render('course/courseInfo', {course: snapshot.val()});
+    });
+    // ref.orderByChild("courseID").equalTo(courseID).on("value", function(snapshot){
+    //     var course = {
+    //         courseID: "DS01",
+    //         courseName: "Data Structures",
+    //         credits: 4,
+    //         deptID: 'CSE18'
+    //     }
+    //     setTimeout(function(){
+    //         res.render('course/courseInfo', {course: snapshot.val()[0]});
+    //     },1000);
+        
+    // }, function (error) {
+    //     console.log("Error: " + error.code);
+    //  });
 });
 
 module.exports = router;
