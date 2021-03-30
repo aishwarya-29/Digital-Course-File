@@ -5,32 +5,44 @@
     src: url(sansation_light.woff);
 }
 
+.personal{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.academic{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .d{
   display: inline-block;
 }
 
-.photo {
-  font-family: 'Montserrat', sans-serif; 
+.p {
+    font-family: 'Montserrat', sans-serif; 
     font-size: larger;
     font-weight: bold;
     padding: 10px;
     color: black !important;
+    cursor: pointer;
   }
-.photo:hover {
+
+
+.p:hover {
     color: #457B9D !important;
   }
 
-.edit{
-  display: inline-block;
-  font-weight: bolder;
-  float: right;
+.p-content{
+  display: none;
+}
+
+.p:hover + .p-content{
+  display: block;
 }
 
 .btn {
-  font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif; 
     border-radius:12px;
-    background-color: #A8DADC
-    ;  
+    background-color: #A8DADC;  
     float:right;
 }
 
@@ -38,4 +50,26 @@
     background-color: aliceblue;
     border:2px solid #457B9D;
 }
-  
+
+.container{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 975px;
+}
+
+.btn-l{
+    text-align: center;
+    float: left;
+    font-size: 75%;
+}
+
+.btn-r{
+    text-align: center;
+    float: right;
+    font-size: 75%;
+}
+.btn-c{
+    text-align: center;
+    font-size: 75%;
+}

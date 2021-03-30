@@ -12,6 +12,14 @@ router.get('/student/login', function(req,res,next){
   res.render('users/studentLogin');
 });
 
+router.get('/student/profile/edit',function(req,res,next){
+  res.render('users/studentEditProfile')
+});
+
+router.get('/faculty/profile/edit',function(req,res,next){
+  res.render('users/facultyEditProfile')
+});
+
 router.get('/faculty/login', function(req,res,next){
   res.render('users/facultyLogin');
 });

@@ -1,0 +1,31 @@
+.personal{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.academic{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.d{
+    position: relative;
+    display: inline-block;
+    padding: 0 22px;
+    font-weight: bolder;
+    vertical-align: middle;
+}
+
+.e{
+    font-weight: bolder;
+    padding: 0 22px;
+}
+
+.btn{
+    font-family: 'Montserrat', sans-serif; 
+    border-radius:12px;
+    background-color: #A8DADC;
+}
+
+.btn:hover{
+    background-color: aliceblue;
+    border:2px solid #457B9D;
+}
