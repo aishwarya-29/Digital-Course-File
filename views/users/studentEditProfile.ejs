@@ -1,0 +1,42 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users/StudprofileEdit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<hr style="border: 2px solid black;">
+<form action="/action_page.php">
+    <div class="personal">
+        <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>
+        <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
+        <label for="name" class="d">Name :</label>
+        <input id="name" type="text" value="Zack Snyder">
+        <label for="dob" class="d">Date of birth :</label>
+        <input id="dob" type="date" value="2001-03-02">
+        <hr>
+        <label for="email" class="e">Email :</label>
+        <input id="email" type="email" value="zack@gmail.com">
+        <hr>
+        <label for="address" class="d">Address :</label>
+        <input id="address" type="text" value="21 backers street">
+        
+        <label for="phn" class="d">Phone number :</label>
+        <input id="phn" type="number" value="8522416230" min="0000000000" max="9999999999">
+    </div>
+    <hr style="border: 2px solid black;">
+    <div class="academic">
+        <h3 style="padding: 0 22px;">ACADEMIC DETAILS</h3>
+        <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
+        <label for="dname" class="d">Depatment name :</label>
+        <input id="dname" type="text" value="Computer science">
+        <label for="rno" class="d">Roll number :</label>
+        <input id="rno" type="text" value="18359">
+        <hr>
+        <label for="cgpa" class="d">CGPA :</label>
+        <input id="cgpa" type="number" step='0.01' value="8.35">
+        <label for="sgpa" class="d">SGPA :</label>
+        <input id="sgpa" type="number" step='0.01' value="8.35">
+    </div>
+    <hr style="border: 2px solid black;">
+    <input class="btn" type="submit" value="Submit">
+</form>
+<%- include ("../partials/footer") %>
