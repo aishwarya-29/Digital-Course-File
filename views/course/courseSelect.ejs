@@ -1,0 +1,21 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/course/courseSelect.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<div class="container" id="cardContainer">
+<% for(var courseid in courses) { %>
+    <%    course = courses[courseid]; %>
+    <div class="card" style="width: 20%;">
+        <img id="image" src="http://storage.googleapis.com/digitalcoursefile-efa96.appspot.com/course%2F<%=course.courseID%>.jpeg"  alt="image">
+        <div class="card-body">
+          <h5 class="card-title"><%= course.courseID %></h5>
+          <p class="card-text"><%= course.courseName %></p>
+          <a href="/course/<%= course.courseID %>" class="btn btn-info" id="viewbtn">View Course</a>
+        </div>
+      </div>
+    <% } %>
+</div>
+
+<%- include ("../partials/footer") %>

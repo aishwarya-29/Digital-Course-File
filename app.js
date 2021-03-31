@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dbSetup = require('./db_setup');
 var firebase = require('firebase');
+var bucket = require('./firebase_storage');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -47,6 +48,8 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/course', courseRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

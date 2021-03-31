@@ -6,11 +6,17 @@
 
 <h1 id="title"> <%= course.courseID %> - <%= course.courseName %></h1>
 <div id="aboutCourse">
-    <h7><strong>Course ID - </strong><%= course.courseID %></h7> <br>
-    <h7><strong>Course Name -</strong> <%= course.courseName %></h7> <br>
-    <h7><strong>Credits -</strong> <%= course.credits %></h7> <br>
-    <h7><strong>Department ID -</strong> <%= course.deptID %></h7> <br>
-    <strong></strong>
+    <div id="leftDiv">
+        <img src="<%=imgURL%>" alt="image">
+    </div>
+    <div id="rightDiv">
+        <h7><strong>Course ID - </strong><%= course.courseID %></h7> <br>
+        <h7><strong>Course Name -</strong> <%= course.courseName %></h7> <br>
+        <h7><strong>Credits -</strong> <%= course.credits %></h7> <br>
+        <h7><strong>Department ID -</strong> <%= course.deptID %></h7> <br>
+        <strong></strong>
+    </div>
+    
 </div>
 
 <div class = "container" id = "basicDocs">
