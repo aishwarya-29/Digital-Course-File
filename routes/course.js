@@ -4,7 +4,7 @@ var firebase = require('firebase');
 var database = firebase.database();
 
 router.get("/", function(req,res,next){
-    var ref = database.ref("/courses");
+    var ref = database.ref("/course");
     ref.on("value", function(snapshot) {
         res.send(snapshot.val());
      }, function (error) {
@@ -18,22 +18,17 @@ router.get("/:courseID", function(req,res,next){
         ref.on('value', (snapshot) => {
         var data = snapshot.val();
         console.log(data);
-        res.render('course/courseInfo', {course: snapshot.val()});
-    });
-    // ref.orderByChild("courseID").equalTo(courseID).on("value", function(snapshot){
-    //     var course = {
-    //         courseID: "DS01",
-    //         courseName: "Data Structures",
-    //         credits: 4,
-    //         deptID: 'CSE18'
-    //     }
-    //     setTimeout(function(){
-    //         res.render('course/courseInfo', {course: snapshot.val()[0]});
-    //     },1000);
         
-    // }, function (error) {
-    //     console.log("Error: " + error.code);
-    //  });
+        // get files
+        var files = firebase.storage().ref('/course/'+courseId);
+        var courseOutcomes = files.child("CO");
+        var CO = null;
+        courseOutcomes.getDownloadURL().then((url) => {
+            CO = url;
+        })
+
+        res.render('course/courseInfo', {course: snapshot.val(), CO: CO});
+    });
 });
 
 module.exports = router;

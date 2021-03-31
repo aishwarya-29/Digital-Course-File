@@ -16,7 +16,11 @@
 <div class = "container" id = "basicDocs">
     <div class = "doc">
         <div class= "preview">
-            <img src="/images/nodocimage.svg" alt="No Document Available">
+            <% if(CO) { %>
+                <img src="<%= CO %>" alt="No Document Available">
+            <% } else { %>
+                <img src="/images/nodocimage.svg" alt="No Document Available">
+            <% } %>
         </div>
         <div class = "aboutDoc">
             <strong>Course Objectives</strong>
