@@ -18,7 +18,7 @@ router.get("/:courseID", function(req,res,next){
         ref.on('value', (snapshot) => {
         var data = snapshot.val();
         console.log(data);
-        res.render('course/courseInfo', {course: snapshot.val(), CO: null, imgURL: process.env.FIREBASE_STORAGE_URL+'course%2F'+courseID+".jpeg"});
+        res.render('course/courseInfo', {course: snapshot.val(), CO: process.env.FIREBASE_STORAGE_URL+'course%2F'+courseID+"CO.pdf", imgURL: process.env.FIREBASE_STORAGE_URL+'course%2F'+courseID+".jpeg"});
     });
 });
 
@@ -38,8 +38,8 @@ router.get("/:courseID", function(req,res,next){
  
 // const bucket = gcs.bucket(bucketName);
 
-// const filePath = `./VA01.jpeg`;
-// const uploadTo = `course/VA01.jpeg`;
+// const filePath = `./public/docs/DS01COthumb.jpg`;
+// const uploadTo = `course/DS01COthumb.jpg`;
 // const fileMime = mime.getType(filePath);
  
  

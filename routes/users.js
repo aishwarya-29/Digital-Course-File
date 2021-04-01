@@ -131,10 +131,10 @@ router.post('/faculty/login', function(req,res,next){
       var users = firebase.database().ref('/users');
       users.on('value', (snapshot) => {
         var data = snapshot.val();
-        for(var rno in data) {
-          var em = data[rno].email;
+        for(var id in data) {
+          var em = data[id].email;
           if(em.localeCompare(user.email) == 0) {
-            res.locals.user = data[rno];
+            res.locals.user = data[id];
             console.log("AEdsfdbg");
           }
         }
@@ -152,6 +152,44 @@ router.post('/faculty/login', function(req,res,next){
     var errorMessage = error.message;
     res.send(errorMessage);
   });
+});
+
+
+
+router.get("/faculty/signup", function(req,res,next){
+  res.render("users/facultySignup");
+});
+
+router.post("/faculty/signup", function(req,res,next){
+  var facID = req.body.facid;
+  var email = req.body.email;
+  var password = req.body.password;
+  var password2 = req.body.password2;
+
+  if(password != password2) {
+    res.send("Password not matching");
+    // --------------------- ERROR -----------------------
+    // password not matching
+  }
+
+  if(password.length < 6) {
+    res.send("password should be greater than 6 characters");
+    // --------------------- ERROR -----------------------
+    // password length not sufficient
+  }
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(newUser => {
+      //console.log(newUser);
+    });
+  
+  firebase.database().ref('users/' + facID).set({
+    facultyID: facID,
+    email: email,
+    type: "Faculty"
+  });
+  
+    res.redirect("/");
 });
 
 // router.post("/student/update", function(req,res,next){

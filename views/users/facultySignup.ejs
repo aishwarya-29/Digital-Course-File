@@ -2,11 +2,15 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/stylesheets/users/studentLogin.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/users/facultyLogin.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users/facultySignup.css">
 </head>
 <div class="login">
-    <h3>FACULTY LOGIN</h3>
-    <form style="padding-top: 80px;" method="POST" action="/users/faculty/login">
+    <h3>FACULTY SIGNUP</h3>
+    <form style="padding-top: 80px;" method="POST" action="/users/faculty/signup">
+        <label for="name">FACULTY ID</label>
+        <div class="form-group">
+            <input type="text" name="facid" id="facid">
+        </div>
         <label for="email">EMAIL</label>
         <div class="form-group">
             <input type="text" name="email" id="email">
@@ -15,11 +19,14 @@
         <div class="form-group">
             <input type="password" name="password" id="password">
         </div>
+        <label for="password">RE-ENTER PASSWORD</label>
+        <div class="form-group">
+            <input type="password" name="password2" id="password2">
+        </div>
         <div><button class="btn btn-dark" type="submit" class="submit-btn">Login</button> </div>
     </form>
     <div class="container" id="options">
-        <a>Forgot password?</a> <br>
-        <a href="/users/faculty/signup" id="signup">Create new account</a>
+        <a href="/users/faculty/login">Have an existing account?</a>
     </div>
 </div>
 

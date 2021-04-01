@@ -25,11 +25,3 @@
 input {
     font-family: 'Montserrat', sans-serif !important;
 }
-
-#signup {
-    color: blue !important;
-}
-
-#signup:hover {
-    text-decoration: underline !important;
-}

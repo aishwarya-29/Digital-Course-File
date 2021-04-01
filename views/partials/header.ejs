@@ -28,9 +28,15 @@
                 </li>
                 <% if(user) {%>
                     <li class="nav-item pop">
-                        <a href="/users/student/profile" class="nav-link">
-                            <%= user.rollNumber %>
-                        </a>
+                        <% if(user.type.localeCompare("Student") == 0) { %>
+                            <a href="/users/student/profile" class="nav-link">
+                                <%= user.rollNumber %>
+                            </a>
+                        <% } else { %>
+                            <a href="/users/faculty/profile" class="nav-link">
+                                <%= user.facultyID %>
+                            </a>
+                        <% } %>
                     </li>
                 <% } else { %>
                     <li class="nav-item pop">
