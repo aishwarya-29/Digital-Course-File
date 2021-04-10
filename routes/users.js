@@ -32,7 +32,22 @@ router.get('/student/profile/edit',function(req,res,next){
 });
 
 router.get('/faculty/profile/edit',function(req,res,next){
-  res.render('users/facultyEditProfile')
+  var profileInformation = {
+    name: "Hello",
+    rno: "GR18304"
+  }
+  var user = firebase.auth().currentUser;
+  var users = firebase.database().ref('/users');
+    users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      for(var rno in data) {
+        var em = data[rno].email;
+        if(em.localeCompare(user.email) == 0) {
+          profileInformation = data[rno];
+        }
+      }
+    });
+  res.render('users/facultyEditProfile',{profileInformation: profileInformation})
 });
 
 router.get('/faculty/login', function(req,res,next){
@@ -232,6 +247,15 @@ router.post("/student/update", function(req,res,next){
     name: name
   });
 
+});
+
+router.post("/student/logout", function(req,res,next){
+  firebase.auth().signOut().then(() => {
+    res.redirect("/");
+  }).catch((error) => {
+    // An error happened.
+    res.send(error);
+  });
 });
 
 
