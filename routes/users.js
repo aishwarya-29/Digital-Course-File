@@ -258,5 +258,14 @@ router.post("/student/logout", function(req,res,next){
   });
 });
 
+router.post("/faculty/logout", function(req,res,next){
+  firebase.auth().signOut().then(() => {
+    res.redirect("/");
+  }).catch((error) => {
+    // An error happened.
+    res.send(error);
+  });
+});
+
 
 module.exports = router;
