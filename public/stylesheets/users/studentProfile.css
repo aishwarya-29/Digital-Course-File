@@ -35,10 +35,6 @@
   display: none;
 }
 
-.p:hover + .p-content{
-  display: block;
-}
-
 .btn {
     font-family: 'Montserrat', sans-serif; 
     border-radius:12px;

@@ -13,7 +13,22 @@ router.get('/student/login', function(req,res,next){
 });
 
 router.get('/student/profile/edit',function(req,res,next){
-  res.render('users/studentEditProfile')
+  var profileInformation = {
+    name: "Hello",
+    rno: "GR18304"
+  }
+  var user = firebase.auth().currentUser;
+  var users = firebase.database().ref('/users');
+    users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      for(var rno in data) {
+        var em = data[rno].email;
+        if(em.localeCompare(user.email) == 0) {
+          profileInformation = data[rno];
+        }
+      }
+    });
+  res.render('users/studentEditProfile',{profileInformation: profileInformation})
 });
 
 router.get('/faculty/profile/edit',function(req,res,next){
@@ -45,7 +60,22 @@ router.get('/student/profile', function(req,res,next){
 });
 
 router.get('/faculty/profile', function(req,res,next){
-  res.render('users/facultyProfile');
+  var profileInformation = {
+    name: "Hello",
+    rno: "GR18304"
+  }
+  var user = firebase.auth().currentUser;
+  var users = firebase.database().ref('/users');
+    users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      for(var rno in data) {
+        var em = data[rno].email;
+        if(em.localeCompare(user.email) == 0) {
+          profileInformation = data[rno];
+        }
+      }
+    });
+  res.render('users/facultyProfile',{profileInformation: profileInformation});
 });
 
 router.post('/student/new', function(req,res,next) {
@@ -192,17 +222,17 @@ router.post("/faculty/signup", function(req,res,next){
     res.redirect("/");
 });
 
-// router.post("/student/update", function(req,res,next){
-  // var data = req.data;
-  // // name, "changed name", roll number
-  // firebase.database().ref('users/' + rno).set({
-  //   rollNumber: rno,
-  //   email: email,
-  //   type: "Student",
-  //   name: name
-  // });
+router.post("/student/update", function(req,res,next){
+  var data = req.data;
+  // name, "changed name", roll number
+  firebase.database().ref('users/' + rno).set({
+    rollNumber: rno,
+    email: email,
+    type: "Student",
+    name: name
+  });
 
-// });
+});
 
 
 module.exports = router;

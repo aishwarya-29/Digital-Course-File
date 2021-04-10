@@ -8,26 +8,25 @@
 </div>
 
 
-
 <div class="d">
-    <a class="p">VIEW PERSONAL DETAILS</a>
-    <div class="p-content">
+    <a class="p" id="det1">VIEW PERSONAL DETAILS</a>
+    <div class="p-content" id="cont1">
         <form >
             <div class="personal">
                 <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
                 <label for="name" class="d">Name :</label>
-                <input id="name" type="text" value="Zack Snyder" readonly>
+                <input id="name" type="text" value="<%= profileInformation.Name %>" readonly>
                 <label for="dob" class="d">Date of birth :</label>
-                <input id="dob" type="date" value="2001-03-02" readonly>
+                <input id="dob" type="date" value="<%= profileInformation.DOB %>" readonly>
                 <hr>
                 <label for="email" class="e">Email :</label>
-                <input id="email" type="email" value="zack@gmail.com" readonly>
+                <input id="email" type="email" value="<%= profileInformation.email %>" readonly>
                 <hr>
                 <label for="address" class="d">Address :</label>
-                <input id="address" type="text" value="21 backers street" readonly>
+                <input id="address" type="text" value="<%= profileInformation.Address %>" readonly>
                 
                 <label for="phn" class="d">Phone number :</label>
-                <input id="phn" type="number" value="8522416230" min="0000000000" max="9999999999" readonly>
+                <input id="phn" type="number" value="<%= profileInformation.Phone %>" min="0000000000" max="9999999999" readonly>
             </div>
             <hr style="border: 2px solid black;">
         </form>
@@ -37,20 +36,20 @@
 <hr style="width: 75%; text-align:left;margin-left:0">
 
 <div class="d">
-    <a class="p">VIEW ACADEMIC DETAILS</a>
-    <div class="p-content">
+    <a class="p" id="det2">VIEW ACADEMIC DETAILS</a>
+    <div class="p-content" id="cont2">
         <form>
             <div class="academic">
                 <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
                 <label for="dname" class="d">Depatment name :</label>
-                <input id="dname" type="text" value="Computer science" readonly>
+                <input id="dname" type="text" value="<%= profileInformation.deptName %>" readonly>
                 <label for="rno" class="d">Roll number :</label>
-                <input id="rno" type="text" value="18359" readonly>
+                <input id="rno" type="text" value="<%= profileInformation.rollNumber %>" readonly>
                 <hr>
                 <label for="cgpa" class="d">CGPA :</label>
-                <input id="cgpa" type="number" step='0.01' value="8.35" readonly>
+                <input id="cgpa" type="number" step='0.01' value="<%= profileInformation.CGPA %>" readonly>
                 <label for="sgpa" class="d">SGPA :</label>
-                <input id="sgpa" type="number" step='0.01' value="8.35" readonly>
+                <input id="sgpa" type="number" step='0.01' value="<%= profileInformation.SGPA %>" readonly>
             </div>
             <hr style="border: 2px solid black;">
         </form>
@@ -69,3 +68,12 @@
 </div>
 
 <%- include ("../partials/footer") %>
+
+<script>
+    $('#det1').click(function(){
+        $('#cont1').toggle();
+    });
+    $('#det2').click(function(){
+        $('#cont2').toggle();
+    });
+</script>
