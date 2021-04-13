@@ -65,7 +65,9 @@
 <div class="container">
     <div class="btn-r"><a href="" class="btn">Change Password</a></div>
     <div class="btn-c"><a href="../faculty/profile/edit" class="btn">edit</a></div>
-    <div class="btn-l"><a href="../faculty/login" class="btn">Sign-out</a></div>
+    <form action="/users/student/logout" method="POST">
+        <div class="btn-l"><button type="submit" class="btn">Sign-out</button></div>
+    </form>
 </div>
 
 <%- include ("../partials/footer") %>

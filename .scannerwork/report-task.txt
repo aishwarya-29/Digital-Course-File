@@ -2,5 +2,5 @@ projectKey=digitalcoursefile
 serverUrl=http://localhost:9000
 serverVersion=8.8.0.42792
 dashboardUrl=http://localhost:9000/dashboard?id=digitalcoursefile
-ceTaskId=AXimP1D5CJ2IPE9k3BTb
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXimP1D5CJ2IPE9k3BTb
+ceTaskId=AXi8Ieksczglh-dWKYQT
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXi8Ieksczglh-dWKYQT

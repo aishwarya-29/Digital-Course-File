@@ -5,6 +5,7 @@ const sonarqubeScanner = require('sonarqube-scanner');
        'sonar.sources': '.',
        'sonar.inclusions' : '/**' // Entry point of your code
        ,
-       'sonar.login' : '291829363e9d77c9df6d6c0fbb714fb4ae326cc7'
+       'sonar.login' : 'admin',
+       'sonar.password': 'password'
        }
      }, () => {});
