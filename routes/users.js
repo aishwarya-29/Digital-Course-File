@@ -134,9 +134,8 @@ router.post('/student/login', function(req,res,next){
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    console.log(user.email);
     res.locals.user = null;
-    if(user) {
+    if(user.email) {
       var users = firebase.database().ref('/users');
       users.on('value', (snapshot) => {
         var data = snapshot.val();
@@ -144,13 +143,12 @@ router.post('/student/login', function(req,res,next){
           var em = data[rno].email;
           if(em.localeCompare(user.email) == 0) {
             res.locals.user = data[rno];
-            console.log("AEdsfdbg");
           }
         }
       });
       res.locals.userEmail = user;
     }
-      console.log(res.locals.user);
+      console.log("user:: ",res.locals.user);
       setTimeout(function () {
         res.redirect("/");
       }, 2500)
