@@ -1,4 +1,4 @@
-<%- include ("../partials/header") %>
+cdcd<%- include ("../partials/header") %>
 <head>
     <link rel="stylesheet" type="text/css" href="/stylesheets/users/studentProfile.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -16,18 +16,18 @@
             <div class="personal">
                 <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
                 <label for="name" class="d">Name :</label>
-                <input id="name" type="text" value="Christopher Nolan" readonly>
+                <input id="name" type="text" value="profileInformation.Name" readonly>
                 <label for="dob" class="d">Date of birth :</label>
-                <input id="dob" type="date" value="1978-03-02" readonly>
+                <input id="dob" type="date" value="profileInformation.DOB" readonly>
                 <hr>
                 <label for="email" class="e">Email :</label>
-                <input id="email" type="email" value="nolan@gmail.com" readonly>
+                <input id="email" type="email" value="profileInformation.email" readonly>
                 <hr>
                 <label for="address" class="d">Address :</label>
-                <input id="address" type="text" value="20 Ingram street" readonly>
+                <input id="address" type="text" value="profileInformation.Address" readonly>
                 
                 <label for="phn" class="d">Phone number :</label>
-                <input id="phn" type="number" value="8533416320" min="0000000000" max="9999999999" readonly>
+                <input id="phn" type="number" value="profileInformation.Phone" min="0000000000" max="9999999999" readonly>
             </div>
             <hr style="border: 2px solid black;">
         </form>
@@ -43,14 +43,13 @@
             <div class="academic">
                 <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
                 <label for="dname" class="d">Depatment name :</label>
-                <input id="dname" type="text" value="Computer science" readonly>
+                <input id="dname" type="text" value="profileInformation.deptName" readonly>
                 <label for="rno" class="d">Designation :</label>
-                <input id="rno" type="text" value="H.O.D." readonly>
+                <input id="rno" type="text" value="profileInformation.des" readonly>
                 <hr>
                 <label for="cgpa" class="d">Qualification :</label>
-                <input id="cgpa" type="text" value="Ph.D." readonly>
-                <label for="sgpa" class="d">Salary :</label>
-                <input id="sgpa" type="number" value="3000000" readonly>
+                <input id="cgpa" type="text" value="profileInformation.Qual" readonly>
+                
             </div>
             <hr style="border: 2px solid black;">
         </form>
@@ -65,9 +64,9 @@
 <div class="container">
     <div class="btn-r"><a href="" class="btn">Change Password</a></div>
     <div class="btn-c"><a href="../faculty/profile/edit" class="btn">edit</a></div>
-    <form action="/users/student/logout" method="POST">
+    <form action="/users/faculty/logout" method="POST">
         <div class="btn-l"><button type="submit" class="btn">Sign-out</button></div>
-    </form>
+        </form>
 </div>
 
 <%- include ("../partials/footer") %>
