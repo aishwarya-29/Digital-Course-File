@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/documents/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+<div class="ui vertical menu">
+    <a class="active teal item" id="myDoc">
+      My Documents
+      <!-- <div class="ui teal left pointing label">1</div> -->
+    </a>
+    <a class="item" id="newDoc">
+      New Document
+      <!-- <div class="ui label">51</div> -->
+    </a>
+    <a class="item" id="savedDoc">
+      Saved Documents
+      <!-- <div class="ui label">1</div> -->
+    </a>
+  </div>
+
+  <div class="contentDiv">
+    <div class="content ui segment" id="one">
+          <table class="table table-bordered table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Date of Creation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% var serNum = 0 %>
+              <% myFiles.forEach(function(file) { %>
+                <% serNum += 1 %>
+                <!-- JSON.stringify(file.metadata) -->
+                  <tr>
+                    <th scope="row"><%= serNum %></th>
+                    <td><a class="filename" target="_blank" href="<%=url%><%=file.name%>"><%= file.name.split('/')[3] %></a></td>
+                    <td><%= file.metadata.contentType %></td>
+                    <td><%= file.metadata.timeCreated.split('T')[0] %></td>
+                  </tr>
+              <% }) %>
+            </tbody>
+          </table>
+    </div>
+    <div class="content ui segment" id="two">
+        <h2>Two</h2>
+    </div>
+    <div class="content ui segment" id="three">
+        <h2>Three</h2>
+    </div>
+    <div class="content ui segment" id="four">
+        <h2>sdgfh</h2>
+    </div>
+  </div>
+
+  
+
+<%- include ("../partials/footer") %>
+<script type="text/javascript" src="/javascripts/documents/index.js"></script>

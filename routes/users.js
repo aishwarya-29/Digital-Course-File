@@ -148,7 +148,6 @@ router.post('/student/login', function(req,res,next){
       });
       res.locals.userEmail = user;
     }
-      console.log("user:: ",res.locals.user);
       setTimeout(function () {
         res.redirect("/");
       }, 2500)

@@ -10,6 +10,8 @@ var bucket = require('./firebase_storage');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var courseRouter = require('./routes/course');
+var documentsRouter = require('./routes/documents');
+
 const e = require('express');
 
 var app = express();
@@ -48,6 +50,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/course', courseRouter);
+app.use('/documents', documentsRouter);
 
 
 

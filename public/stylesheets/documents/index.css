@@ -1,0 +1,23 @@
+.contentDiv {
+    display: inline-block;
+    margin: 0% 3%;
+}
+
+.ui.vertical.menu {
+    float: left !important;
+}
+
+.content {
+    display: none;
+    width: 60rem;
+    height: fit-content;
+}
+
+.filename:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+.filename {
+    color: white !important;
+}
