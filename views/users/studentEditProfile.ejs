@@ -4,39 +4,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <hr style="border: 2px solid black;">
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("Name").value = document.
+    document.getElementById("email").value = profileInformation.email;
+});
+</script>
 <form action="/users/student/update" method="POST">
     <div class="personal">
-        <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>
+        <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>                         
         <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
-        <label for="name" class="d">Name :</label>
-        <input id="name" type="text" value="profileInformation.Name" name="Name">
+        <label for="Name" class="d">Name :</label>
+        <input id="Name" type="text"  value="<%= profileInformation.Name %>" name="Name">
         <label for="dob" class="d">Date of birth :</label>
-        <input id="dob" type="date" value="profileInformation.DOB" name="DOB">
+        <input id="dob" type="date" value="<%= profileInformation.DOB %>" name="DOB">
         <hr>
         <label for="email" class="e">Email :</label>
-        <input id="email" type="email" value="profileInformation.email" name="email">
+        <input id="email" type="email" value="<%= profileInformation.email %>" name="email">
         <hr>
         <label for="address" class="d">Address :</label>
-        <input id="address" type="text" value="profileInformation.Address" name="Address">
+        <input id="address" type="text" value="<%= profileInformation.Address %>" name="Address">
         
         <label for="phn" class="d">Phone number :</label>
-        <input id="phn" type="number" value="profileInformation.Phone" min="0000000000" max="9999999999" name="Phone">
+        <input id="phn" type="number" value="<%= profileInformation.Phone %>" min="0000000000" max="9999999999" name="Phone">
     </div>
     <hr style="border: 2px solid black;">
-    <div class="academic">
-        <h3 style="padding: 0 22px;">ACADEMIC DETAILS</h3>
-        <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
-        <label for="dname" class="d">Depatment name :</label>
-        <input id="dname" type="text" value="profileInformation.deptName" name="deptName">
-        <label for="rno" class="d">Roll number :</label>
-        <input id="rno" type="text" value="profileInformation.rollNumber" name="rollNumber">
-        <hr>
-        <label for="cgpa" class="d">CGPA :</label>
-        <input id="cgpa" type="number" step='0.01' value="profileInformation.CGPA" name="CGPA">
-        <label for="sgpa" class="d">SGPA :</label>
-        <input id="sgpa" type="number" step='0.01' value="profileInformation.SGPA" name="SGPA">
-    </div>
     <hr style="border: 2px solid black;">
     <input class="btn" type="submit" value="Submit">
 </form>
+
+<form action="/users/student/cancelUpdate" method="POST">
+    <div class="btn-l"><button type="submit" class="btn">Cancel</button></div>
+    </form>
+
 <%- include ("../partials/footer") %>
