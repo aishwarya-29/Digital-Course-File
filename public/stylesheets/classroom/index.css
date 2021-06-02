@@ -1,0 +1,22 @@
+#title {
+    text-align: center;
+    text-decoration: underline;
+    font-family: 'Rubik', sans-serif;
+}
+
+#cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    margin: 3%;
+    padding: 3%;
+    border: 2px solid black;
+}
+
+.card:hover {
+    cursor: pointer;
+}
