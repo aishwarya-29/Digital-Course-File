@@ -4,12 +4,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <hr style="border: 2px solid black;">
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("Name").value = document.
+    document.getElementById("email").value = profileInformation.email;
+});
+</script>
 <form action="/users/student/update" method="POST">
     <div class="personal">
-        <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>
+        <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>                         
         <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
+<<<<<<< HEAD
         <label for="name" class="d">Name :</label>
         <input id="name" type="text" value="<%= profileInformation.Name %>" name="Name">
+=======
+        <label for="Name" class="d">Name :</label>
+        <input id="Name" type="text"  value="<%= profileInformation.Name %>" name="Name">
+>>>>>>> 5b7147392cc0b33245889ae7012fd728c2dc2682
         <label for="dob" class="d">Date of birth :</label>
         <input id="dob" type="date" value="<%= profileInformation.DOB %>" name="DOB">
         <hr>
@@ -39,4 +51,9 @@
     <hr style="border: 2px solid black;">
     <input class="btn" type="submit" value="Submit">
 </form>
+
+<form action="/users/student/cancelUpdate" method="POST">
+    <div class="btn-l"><button type="submit" class="btn">Cancel</button></div>
+    </form>
+
 <%- include ("../partials/footer") %>

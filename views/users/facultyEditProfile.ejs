@@ -4,7 +4,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <hr style="border: 2px solid black;">
-<form action="/action_page.php">
+<form action="/users/faculty/update" method="POST">
     <div class="personal">
         <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>
         <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
@@ -34,4 +34,12 @@
     <hr style="border: 2px solid black;">
     <input class="btn" type="submit" value="Submit">
 </form>
+
+
+<form action="/users/faculty/cancelUpdate" method="POST">
+    <div class="btn-l"><button type="submit" class="btn">Cancel</button></div>
+    </form>
+
+
+
 <%- include ("../partials/footer") %>

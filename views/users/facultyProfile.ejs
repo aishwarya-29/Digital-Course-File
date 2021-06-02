@@ -42,10 +42,20 @@
             <div class="academic">
                 <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
                 <label for="dname" class="d">Depatment name :</label>
+<<<<<<< HEAD
                 <input id="dname" type="text" value="<%= profileInformation.deptName %>" readonly>
                 <label for="rno" class="d">Faculty ID:</label>
                 <input id="rno" type="text" value="<%= profileInformation.facultyID %>" readonly>
                 <hr>
+=======
+                <%= profileInformation.deptName %>
+                <hr>
+                <label for="rno" class="d">Designation :</label>
+                <%= profileInformation.des %>
+                <hr>
+                <label for="cgpa" class="d">Qualification :</label>
+                <%= profileInformation.qual %>
+>>>>>>> 5b7147392cc0b33245889ae7012fd728c2dc2682
             </div>
             <hr style="border: 2px solid black;">
         </form>
@@ -53,9 +63,6 @@
 </div>
 
 <hr style="width: 75%; text-align:left;margin-left:0">
-
-
-
 
 <div class="container">
     <div class="btn-r"><a href="" class="btn">Change Password</a></div>
