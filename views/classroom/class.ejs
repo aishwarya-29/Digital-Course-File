@@ -1,0 +1,193 @@
+<%- include ("../partials/header") %>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/documents/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/documents/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<style>
+ @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600700&display=swap");
+ * {
+	 box-sizing: border-box;
+}
+ .page-contain {
+	 display: flex;
+	 min-height: 100vh;
+	 align-items: center;
+	 justify-content: center;
+	 background: #e7f3f1;
+	 border: 0.75em solid white;
+	 padding: 2em;
+	 font-family: "Open Sans", sans-serif;
+}
+ .data-card {
+     -moz-box-align: center;
+     padding-left: 100;
+	 display: flex;
+	 flex-direction: column;
+	 max-width: 30.75em;
+	 max-height: 15.75em;
+	 overflow: hidden;
+	 border-radius: 0.5em;
+	 text-decoration: none;
+	 background: white;
+	 margin: 1em;
+	 padding: 2.75em 6.5em;
+	 box-shadow: 0 1.5em 2.5em -0.5em rgba(0, 0, 0, 0.1);
+	 transition: transform 0.45s ease, background 0.45s ease;
+}
+ .data-card h3 {
+	 color: #2e3c40;
+	 font-size: 2.5em;
+	 font-weight: 400;
+	 line-height: 1;
+	 padding-bottom: 0.5em;
+	 margin: 0 0 0.142857143em;
+	 border-bottom: 2px solid #753bbd;
+	 transition: color 0.45s ease, border 0.45s ease;
+}
+ .data-card h4 {
+	 color: #627084;
+	 text-transform: uppercase;
+	 font-size: 1.125em;
+	 font-weight: 400;
+	 line-height: 0.015;
+	
+	 margin: 0 0 1.777777778em;
+	 transition: color 0.45s ease;
+}
+ .data-card p {
+	 opacity: 0;
+	 color: #fff;
+	 font-weight: 600;
+	 line-height: 1.8;
+	 margin: 0 0 1.25em;
+	 transform: translateY(-1em);
+	 transition: opacity 0.45s ease, transform 0.5s ease;
+}
+ .data-card .link-text {
+	 display: block;
+	 color: #753bbd;
+	 font-size: 1.125em;
+	 font-weight: 600;
+	 line-height: 1.2;
+	 margin: auto 0 0;
+	 transition: color 0.45s ease;
+}
+ .data-card .link-text svg {
+	 margin-left: 0.5em;
+	 transition: transform 0.6s ease;
+}
+ .data-card .link-text svg path {
+	 transition: fill 0.45s ease;
+}
+ .data-card:hover {
+	 background: #753bbd;
+	 transform: scale(1.02);
+}
+ .data-card:hover h3 {
+	 color: #fff;
+	 border-bottom-color: #a754c4;
+}
+ .data-card:hover h4 {
+	 color: #fff;
+}
+ .data-card:hover p {
+	 opacity: 1;
+	 transform: none;
+}
+ .data-card:hover .link-text {
+	 color: #fff;
+}
+ .data-card:hover .link-text svg {
+	 animation: point 1.25s infinite alternate;
+}
+ .data-card:hover .link-text svg path {
+	 fill: #fff;
+}
+ @keyframes point {
+	 0% {
+		 transform: translateX(0);
+	}
+	 100% {
+		 transform: translateX(0.125em);
+	}
+}
+ 
+</style>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+    <a href="/classroom/details" class="data-card" style="padding-left: 500;">
+      <h3>Classroom 1</h3> 
+      <p>A place to learn</p>
+      <span class="link-text" href="/details">
+        More details
+        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+  </svg></span></a>
+  
+
+  <!-- Delete from here on to see the frontend-->   
+  <div class="ui vertical menu">
+    <a class="active teal item" id="myDoc">
+      My Documents
+      <div class="ui teal left pointing label">1</div> 
+    </a>
+    <a class="item" id="newDoc">
+      New Document
+       <div class="ui label">51</div> 
+    </a>
+    <a class="item" id="savedDoc">
+      Saved Documents
+       <div class="ui label">1</div> 
+    </a>
+  </div>
+
+  <div class="contentDiv">
+    <div class="content ui segment" id="one">
+          <table class="table table-bordered table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Date of Creation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% var serNum = 0 %>
+              <% myFiles.forEach(function(file) { %>
+                <% serNum += 1 %>
+                 JSON.stringify(file.metadata) 
+                  <tr>
+                    <th scope="row"><%= serNum %></th>
+                    <td><a class="filename" target="_blank" href="<%=url%><%=file.name%>"><%= file.name.split('/')[3] %></a></td>
+                    <td><%= file.metadata.contentType %></td>
+                    <td><%= file.metadata.timeCreated.split('T')[0] %></td>
+                  </tr>
+             // <% }) %>
+            </tbody>
+          </table>
+    </div>
+    <div class="content ui segment" id="two">
+        <h2>Two</h2>
+    </div>
+    <div class="content ui segment" id="three">
+        <h2>Three</h2>
+    </div>
+    <div class="content ui segment" id="four">
+        <h2>sdgfh</h2>
+    </div>
+  </div>
+
+
+
+  
+<!-- Delete till here!!!!-->
+
+<%- include ("../partials/footer") %>

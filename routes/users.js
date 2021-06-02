@@ -145,12 +145,14 @@ router.post('/student/login', function(req,res,next){
     var user = firebase.auth().currentUser;
     //var user = userCredential.user;
     //res.locals.user = null;
+    console.log(user.email);
     if(user.email) {
       var users = firebase.database().ref('/users');
       users.on('value', (snapshot) => {
         var data = snapshot.val();
         for(var rno in data) {
           var em = data[rno].email;
+          console.log("155 : ");    
           if(em.localeCompare(user.email) == 0) {
             res.locals.user = data[rno];       
             console.log("153 : " + res.locals.user.rollNumber);
@@ -354,7 +356,6 @@ router.post("/faculty/update", function(req,res,next){
 
 router.post("/faculty/cancelUpdate", function(req,res,next){
   var data = req.data;
-  console.log("283 : In here")
   var user = firebase.auth().currentUser;
   var users = firebase.database().ref('/users');
     users.on('value', (snapshot) => {
