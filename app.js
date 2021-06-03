@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var courseRouter = require('./routes/course');
 var documentsRouter = require('./routes/documents');
+var classroomRouter = require('./routes/classroom');
 
 const e = require('express');
 
@@ -51,6 +52,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/course', courseRouter);
 app.use('/documents', documentsRouter);
+app.use('/classroom', classroomRouter);
+
+
 
 
 

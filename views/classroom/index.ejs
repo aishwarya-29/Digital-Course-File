@@ -1,0 +1,23 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/classroom/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<h2 id="title">YOUR CLASSROOMS</h2>
+
+<div class="container" id="cont">
+    <% classrooms.forEach((croom)=>{ %>
+        <a href="/classroom/<%=croom.id%>">
+        <div class="card">
+            <h5>Classroom ID: <%= croom.id%></h5>
+            <h5>Subject: <%= croom.Name %></h5>
+            <h5>Faculty: <%= croom.Faculty %> </h5>
+        </div>
+        </a>
+    <% }) %>
+    
+
+</div>
+
+<%- include ("../partials/footer") %>

@@ -1,0 +1,58 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users/studentProfile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<script>
+    $('#det1').click(function(){
+        $('#cont1').toggle();
+    });
+    $('#det2').click(function(){
+        $('#cont2').toggle();
+    });
+</script>
+
+<div class="d">
+    <a class="p" id="det1">Class Details</a>
+    <div class="p-content" id="cont1">
+        <form >
+            <div class="personal">
+                <hr style="width: 75%; margin-left: 0; border: 1px solid black;">
+                <label for="name" class="d">Classroom Name : </label>
+                Class1
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </form>
+        <hr style="border: 2px solid black;">
+    </div>
+</div>
+
+
+<hr style="width: 75%; text-align:left;margin-left:0">
+
+<div class="d">
+    <a class="p" id="det2">Students</a>
+    <div class="p-content" id="cont2">
+        <form >
+            <div class="personal">
+                <hr style="width: 75%; margin-left: 0; border: 1px solid black;">
+                <label for="name" class="d">Name1</label>
+                &nbsp;&nbsp;
+                <label for="name" class="d">Name2</label>
+                <hr>
+                <label for="name" class="d">Name3</label>
+                &nbsp;&nbsp;
+                <label for="name" class="d">Name4</label>
+                <hr>
+            </div>
+            <hr style="border: 2px solid black;">
+        </form>
+    </div>
+</div>
+
+<hr style="width: 75%; text-align:left;margin-left:0">
+
+
+
+<%- include ("../partials/footer") %>

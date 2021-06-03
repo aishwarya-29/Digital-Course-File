@@ -48,11 +48,14 @@ router.get("/", function(req,res,next){
               var myFiles = []
               files.forEach((file)=>{
                   var directoryURL = file.name.split('/')
+                  console.log(directoryURL);
+                  console.log(userID);
                   if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
                     myFiles.push(file);
                   }
                     
               });
+              //console.log(myFiles,"FDS");
               res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL});
             }
             else {

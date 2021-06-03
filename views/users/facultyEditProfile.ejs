@@ -9,18 +9,27 @@
         <h3 style="padding: 0 22px;">PERSONAL DETAILS</h3>
         <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
         <label for="name" class="d">Name :</label>
-        <input id="name" type="text" value="<%= profileInformation.Name %>"  name="Name">
+        <input id="name" type="text" value="<%= profileInformation.Name %>" name="Name">
         <label for="dob" class="d">Date of birth :</label>
-        <input id="dob" type="date" value="<%= profileInformation.DOB %>"  name="DOB">
+        <input id="dob" type="date" value="<%= profileInformation.DOB %>" name="DOB">
         <hr>
         <label for="email" class="e">Email :</label>
-        <input id="email" type="email"value="<%= profileInformation.email %>"  name="email">
+        <input id="email" type="email" value="<%= profileInformation.email %>" name="email">
         <hr>
         <label for="address" class="d">Address :</label>
-        <input id="address" type="text" value="<%= profileInformation.Address %>"  name="Address">
+        <input id="address" type="text" value="<%= profileInformation.Address %>" name="Address">
         
         <label for="phn" class="d">Phone number :</label>
-        <input id="phn" type="number"value="<%= profileInformation.Phone %>"  min="0000000000" max="9999999999" name="Phone">
+        <input id="phn" type="number" value="<%= profileInformation.Phone %>" min="0000000000" max="9999999999" name="Phone">
+    </div>
+    <hr style="border: 2px solid black;">
+    <div class="academic">
+        <h3 style="padding: 0 22px;">PROFESSIONAL DETAILS</h3>
+        <hr style="width: 25%; margin-left: 0; border: 1px solid black;">
+        <label for="dname" class="d">Depatment name :</label>
+        <input id="dname" type="text" value="<%= profileInformation.deptName %>" name="deptName">
+        <label for="rno" class="d">Faculty ID:</label>
+                <input id="rno" type="text" value="<%= profileInformation.facultyID %>" readonly>
     </div>
     <hr style="border: 2px solid black;">
     <input class="btn" type="submit" value="Submit">
