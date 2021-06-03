@@ -30,12 +30,13 @@
         <input id="phn" type="number" value="<%= profileInformation.Phone %>" min="0000000000" max="9999999999" name="Phone">
     </div>
     <hr style="border: 2px solid black;">
-    <hr style="border: 2px solid black;">
-    <input class="btn" type="submit" value="Submit">
+    <div class="container">
+        <div class="btn-r"><a href="" class="btn">Submit</a></div>
+        <form action="/users/student/profile" method="POST">
+        <div class="btn-l"><button type="submit" class="btn">Cancel</button></div>
+        </form>
+    </div>
 </form>
 
-<form action="/users/student/cancelUpdate" method="POST">
-    <div class="btn-l"><button type="submit" class="btn">Cancel</button></div>
-    </form>
 
 <%- include ("../partials/footer") %>
