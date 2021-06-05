@@ -8,15 +8,46 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
-.card {
-    margin: 3%;
-    padding: 3%;
-    border: 2px solid black;
-}
 
 .card:hover {
     cursor: pointer;
+}
+.card {
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+        0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    font-family: 'Montserrat', sans-serif;
+    height: 320px;
+    width: max-content;
+    padding: 0% 3% 0% 3%;
+    background-color: #A8DADC;
+    font-size: 14px;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card-title {
+    border-bottom: 2px solid #1D3557;
+    font-size: 18px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.subject {
+    font-size: 30px;
+}
+
+.fac {
+    font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    color: #E63946;
+}
+
+.imgclass {
+    height: 180px;
+    width: 250px;
 }

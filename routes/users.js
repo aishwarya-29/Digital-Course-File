@@ -390,5 +390,8 @@ router.post("/faculty/logout", function(req,res,next){
   });
 });
 
+router.get("/student/:rollno", function(req,res,next){
+  res.render("users/profile")
+});
 
 module.exports = router;

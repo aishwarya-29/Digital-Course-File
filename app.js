@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var courseRouter = require('./routes/course');
 var documentsRouter = require('./routes/documents');
 var classroomRouter = require('./routes/classroom');
+var apiRouter = require('./routes/api');
 
 const e = require('express');
 
@@ -44,7 +45,7 @@ app.use(function(req, res, next) {
     });
     res.locals.userEmail = user;
   }
-    
+  res.locals.url = process.env.FIREBASE_STORAGE_URL;
     next();
 });
 
@@ -53,6 +54,7 @@ app.use('/users', usersRouter);
 app.use('/course', courseRouter);
 app.use('/documents', documentsRouter);
 app.use('/classroom', classroomRouter);
+app.use('/api', apiRouter);
 
 
 

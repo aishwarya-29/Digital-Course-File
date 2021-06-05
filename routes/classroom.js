@@ -58,8 +58,10 @@ router.get("/", function(req,res,next){
                 for(var clid in data) {
                     var classroom = data[clid];
                     var studs = classroom.students;
-                    console.log(studs);
-                    classrooms.push(classroom);
+                    if(studs.includes(userID)) {
+                        console.log(studs);
+                        classrooms.push(classroom);
+                    }
                 }
         });
     });
@@ -70,7 +72,36 @@ router.get("/", function(req,res,next){
     
 });
 
-
+router.get("/:id", function(req,res,next){
+    var id = req.params.id;
+    var ref = firebase.database().ref('/classroom/' + id);
+        ref.on('value', (snapshot) => {
+        var data = snapshot.val();
+        console.log(data);
+        bucket.getFiles(function(err, files) {
+            if (!err) {
+              // files is an array of File objects.
+              var myFiles = []
+              files.forEach((file)=>{
+                  var directoryURL = file.name.split('/');
+                  if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(data.courseID) == 0 && directoryURL[2].length > 0){
+                      console.log("woohooo");
+                    myFiles.push(file);
+                  }
+                    
+              });
+              console.log(myFiles,"Fsdg");
+              //console.log(myFiles,"FDS");
+              res.render("classroom/classroom", {classroom: data, files: myFiles, url: process.env.FIREBASE_STORAGE_URL});
+            }
+            else {
+                console.log(err);
+            }
+          });
+        
+    });
+    
+});
 
 
 

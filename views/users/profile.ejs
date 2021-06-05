@@ -1,0 +1,74 @@
+<%- include ("../partials/header") %>
+<head>
+  <link rel="stylesheet" href="/stylesheets/users/profile.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+</head>
+<div id="wrapper">
+    <div id="page-content-wrapper"> 
+        <div class="container" id="head">
+                <div class="accent-orange-gradient row" id="hh">
+                    <h1 style="display: none;" id="facname">GR18305</h1>
+                    <div class="box col-md-4">
+                      <div class="slider">
+                        <input
+                          type="radio"
+                          name="slider"
+                          title="slide1"
+                          checked="checked"
+                          class="slider__nav"
+                        />
+                        <input type="radio" name="slider" title="slide2" class="slider__nav" />
+                        <input type="radio" name="slider" title="slide3" class="slider__nav" />
+                        <div class="slider__inner">
+                          <div class="slider__contents">
+                            <i class="slider__image fas fa-home"></i>
+                            <h2 class="slider__caption">NAME</h2>
+                            <p class="slider__txt">Harry Potter</p>
+                            <h2 class="slider__caption">Roll Number</h2>
+                            <p class="slider__txt">GR18305</p>
+                          </div>
+                          <div class="slider__contents">
+                            <i class="slider__image fab fa-buffer"></i>
+                            <h2 class="slider__caption">Subjects</h2>
+                            <p class="slider__txt">
+                              DS01 DE01 EQ04
+                            </p>
+                          </div>
+                          <div class="slider__contents">
+                            <i class="slider__image fas fa-portrait"></i>
+                            <h2 class="slider__caption">EMAIL</h2>
+                            <p class="slider__txt">gr18305@hogwarts.edu</p>
+                            <h2 class="slider__caption">CONTACT</h2>
+                            <p class="slider__txt">773628231</p>
+                          </div>
+                          <div class="slider__contents"></div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="accent-cyan-gradient col-md-8" id="quote">
+                    <script type="text/javascript" class="quotes">
+                        writeRandomQuote = function () {
+                           var quotes = new Array();
+                           quotes[0] = "If you are planning for a year, sow rice; if you are planning for a decade, plant trees; if you are planning for a lifetime, educate people.";
+                           quotes[1] = "If someone is going down the wrong road, he doesn’t need motivation to speed him up. What he needs is education to turn him around.";
+                           quotes[2] = "Every goal, every action, every thought, every feeling one experiences, whether it be consciously or unconsciously known, is an attempt to increase one’s level of peace of mind.";
+                           quotes[3] = "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.";
+                           quotes[4] = "If you think education is expensive, try ignorance.";
+                           quotes[5] = "We learn more by looking for the answer to a question and not finding it than we do from learning the answer itself.";
+                           quotes[6] = "If a man empties his purse into his head, no man can take it away from him. An investment in knowledge always pays the best interest.";
+                           quotes[7] = "A teacher affects eternity; he can never tell where his influence stops.";
+                           quotes[8] = "Do not confine your children to your own learning, for they were born in another time.";
+                           quotes[9] = "Example is not the main thing in influencing others. It is the only thing."
+                           quotes[10] = "The dream begins, most of the time, with a teacher who believes in you, who tugs and pushes and leads you on to the next plateau, sometimes poking you with a sharp stick called truth.";
+                           var rand = Math.floor(Math.random()*quotes.length);
+                           document.write('<h2 class="quotes">'+quotes[rand]+'</h2>');
+                        }
+                        writeRandomQuote();
+                     </script>
+
+<% include ("../partials/footer") %>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
