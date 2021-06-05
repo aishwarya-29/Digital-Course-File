@@ -1,7 +1,39 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
-var admin = require('firebase-admin');
+var database = firebase.database();
+
+function getCurrentUser() {
+  var user = firebase.auth().currentUser;
+  currentUser = null;
+  if(user) {
+      var users = firebase.database().ref('/users');
+      users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      for(var rno in data) {
+          var em = data[rno].email;
+          if(em.localeCompare(user.email) == 0) {
+          currentUser = data[rno];
+          }
+      }
+      });
+  }
+  return new Promise((resolve, reject) => resolve(currentUser));
+}
+
+var mime = require('mime');
+
+const keyFilename="./firebase_admin.json"; //replace this with api key file
+const projectId = "digitalcoursefile-efa96" //replace with your project id
+const bucketName = `${projectId}.appspot.com`;
+
+const {Storage} = require('@google-cloud/storage');
+const gcs = new Storage({
+  projectId,
+  keyFilename
+});
+
+const bucket = gcs.bucket(bucketName);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -137,7 +169,6 @@ router.post('/student/new', function(req,res,next) {
 });
 
 router.post('/student/login', function(req,res,next){
-  console.log("qewaf");
   var email = req.body.email;
   var password = req.body.password;
   firebase.auth().signInWithEmailAndPassword(email, password)
@@ -153,10 +184,8 @@ router.post('/student/login', function(req,res,next){
         var data = snapshot.val();
         for(var rno in data) {
           var em = data[rno].email;
-          console.log("155 : ");    
           if(em.localeCompare(user.email) == 0) {
             res.locals.user = data[rno];       
-            console.log("153 : " + res.locals.user.rollNumber);
             break;
           }
         }
@@ -193,7 +222,6 @@ router.post('/faculty/login', function(req,res,next){
           var em = data[id].email;
           if(em.localeCompare(user.email) == 0) {
             res.locals.user = data[id];
-            console.log("AEdsfdbg");
           }
         }
       });
@@ -391,7 +419,45 @@ router.post("/faculty/logout", function(req,res,next){
 });
 
 router.get("/student/:rollno", function(req,res,next){
-  res.render("users/profile")
+  var classrooms = [];
+  var userID = req.params.rollno;
+  var users = firebase.database().ref('/users/'+userID);
+  var profileInformation;
+    users.on('value', (snapshot) => {
+      var data = snapshot.val();
+          profileInformation = data;
+          var crooms = firebase.database().ref("/classroom");
+          crooms.on("value",(snapshot)=> {
+              var data = snapshot.val();
+                  for(var clid in data) {
+                      var classroom = data[clid];
+                      var studs = classroom.students;
+                      if(studs.includes(userID)) {
+                          classrooms.push(classroom);
+                      }
+                  }
+          })
+    });
+    var myFiles = []
+      bucket.getFiles(function(err, files) {
+          if (!err) {
+            files.forEach((file)=>{
+                var directoryURL = file.name.split('/');
+                if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
+                  if(file.metadata.metadata.visibility.localeCompare("public")==0)
+                    myFiles.push(file);
+                }
+                  
+            });
+          }
+          else {
+              console.log(err);
+          }
+        });
+    setTimeout(()=>{
+      console.log(profileInformation,classrooms,myFiles);
+      res.render("users/profile",{user: profileInformation, classrooms: classrooms, files: myFiles});
+    },2000);
 });
 
 module.exports = router;

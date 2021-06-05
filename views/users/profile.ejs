@@ -10,7 +10,7 @@
     <div id="page-content-wrapper"> 
         <div class="container" id="head">
                 <div class="accent-orange-gradient row" id="hh">
-                    <h1 style="display: none;" id="facname">GR18305</h1>
+                    <h1 style="display: none;" id="facname"><%= user.rollNumber %></h1>
                     <div class="box col-md-4">
                       <div class="slider">
                         <input
@@ -26,23 +26,25 @@
                           <div class="slider__contents">
                             <i class="slider__image fas fa-home"></i>
                             <h2 class="slider__caption">NAME</h2>
-                            <p class="slider__txt">Harry Potter</p>
+                            <p class="slider__txt"><%= user.Name %></p>
                             <h2 class="slider__caption">Roll Number</h2>
-                            <p class="slider__txt">GR18305</p>
+                            <p class="slider__txt"><%= user.rollNumber %></p>
                           </div>
                           <div class="slider__contents">
                             <i class="slider__image fab fa-buffer"></i>
-                            <h2 class="slider__caption">Subjects</h2>
+                            <h2 class="slider__caption">Courses</h2>
                             <p class="slider__txt">
-                              DS01 DE01 EQ04
+                              <% classrooms.forEach((croom)=>{ %>
+                                <span class="croomid"><%= croom.id %></span> - <span class="croomcourseid"><%= croom.Name %></span> <br>
+                              <% }) %>
                             </p>
                           </div>
                           <div class="slider__contents">
                             <i class="slider__image fas fa-portrait"></i>
                             <h2 class="slider__caption">EMAIL</h2>
-                            <p class="slider__txt">gr18305@hogwarts.edu</p>
+                            <p class="slider__txt"><%= user.email %></p>
                             <h2 class="slider__caption">CONTACT</h2>
-                            <p class="slider__txt">773628231</p>
+                            <p class="slider__txt"><%= user.Phone %></p>
                           </div>
                           <div class="slider__contents"></div>
                         </div>
@@ -68,6 +70,47 @@
                         }
                         writeRandomQuote();
                      </script>
+                     </div>
+                    </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="container" id="fileContainer">
+  <h2><%=user.Name%>'s Files</h2>
+  <div class="contentDiv">
+    <div>
+          <table class="table table-bordered table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Date of Creation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(typeof files != 'undefined') { %>
+                <% serNum = 0 %>
+                <% files.forEach(function(file) { %>
+                  <% serNum += 1 %>
+                    <tr>
+                      <th scope="row"><%= serNum %></th>
+                      <td><a class="filename" target="_blank" href="<%=url%><%=file.name%>"><%= file.name.split('/')[3] %></a></td>
+                      <td><%= file.metadata.contentType %></td>
+                      <td><%= file.metadata.timeCreated.split('T')[0] %></td>
+                    </tr>
+                <% }) %>
+              <% } else { %>
+              <% } %>
+              <% var serNum = 0 %>
+              
+            </tbody>
+          </table>
+    </div>
+    </div>
+
+</div>
 
 <% include ("../partials/footer") %>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>

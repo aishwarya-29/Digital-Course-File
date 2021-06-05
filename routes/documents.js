@@ -48,10 +48,9 @@ router.get("/", function(req,res,next){
               var myFiles = []
               files.forEach((file)=>{
                   var directoryURL = file.name.split('/')
-                  console.log(directoryURL);
-                  console.log(userID);
                   if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
                     myFiles.push(file);
+                    console.log(file.metadata.metadata);
                   }
                     
               });
@@ -63,6 +62,48 @@ router.get("/", function(req,res,next){
             }
           });
     });
+});
+
+
+router.post("/delete", function(req,res,next){
+    console.log(req.body);
+    var path = req.body.fileNameForm2;
+    console.log(path,"aeff");
+    async function deleteFile() {
+        await bucket.file(path).delete();
+      }
+      
+      deleteFile().catch(console.error);
+      res.redirect("/documents");
+});
+
+router.post("/updateVisibility", function(req,res,next){
+    var path = req.body.fileNameForm;
+    var VISI = req.body.visForm;
+    console.log(path,VISI);
+    
+    async function setFileMetadata() {
+        // Set file metadata.
+        const [metadata] = await bucket.file(path).setMetadata({
+      
+            // A note or actionable items for user e.g. uniqueId, object description,
+            // or other useful information.
+            metadata: {
+              visibility: VISI
+            },
+          });
+      
+        console.log(
+          'Updated metadata for object',
+          path,
+        );
+      }
+      
+      setFileMetadata().catch(console.error);
+      setTimeout(()=>{
+        res.redirect('/documents');
+      },2000);
+      
 });
 
 

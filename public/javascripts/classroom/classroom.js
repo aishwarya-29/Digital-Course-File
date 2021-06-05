@@ -40,5 +40,6 @@ $(document).ready(()=> {
             alert(e);
         }
     });
+
 });
 

@@ -7,7 +7,7 @@
 </head>
 
 <h1 id="title">Data Structures</h1>
-<h2 id="subtitle">Class CL01</h2>
+<h2 id="subtitle">Class <%= classroom.id %></h2>
 
 <div class="ui three item menu">
     <a class="active item menuitem" id="menu1">List of Students</a>
@@ -25,21 +25,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>GR18304</td>
-            <td>Harry Potter</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>GR18305</td>
-            <td>Hermione Granger</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>GR18306</td>
-            <td>Ronald Weasley</td>
-          </tr>
+          <% var it = 0 %>
+          <% classroom.students.forEach((stud)=> { it+=1; %>
+            <tr class="students">
+              <td><%=it%></td>
+              <td class="rollNo"><%=stud %></td>
+              <td><%=classroom.studentNames[stud]%></td>
+            </tr>
+            <% }) %>  
         </tbody>
       </table>
 </div>
