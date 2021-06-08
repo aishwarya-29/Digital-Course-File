@@ -66,10 +66,10 @@
           </table>
     </div>
     <div class="content ui segment" id="two">
-      <form  method="POST" action = "/documents/uploadDoc">
+      <form  method="POST" action = "/documents/uploadDoc" enctype="multipart/form-data">
         <h2>Upload new file</h2>
         <br>
-        <input class='button' type="file" id="myFile" name="filename">
+        <input class='button' type="file" id="file" name="file">
         <input type="submit" name = "Submit">
         </form>
     </div>

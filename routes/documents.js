@@ -3,40 +3,13 @@ var router = express.Router();
 var firebase = require('firebase');
 var database = firebase.database();
 var storage = require('@google-cloud/storage');
-var formidable = require("formidable");
-var multer = require('multer');
+var admin = require("firebase-admin");
 
+const saltedMd5=require('salted-md5')
+const path=require('path');
+const multer=require('multer')
+const upload=multer({storage: multer.memoryStorage()})
 
-const fileStorage = multer.diskStorage({
-  destination : (req,file,cb) => {
-    cb(null,'tempSavtte/');
-  },
-  filename : (req,file,cb) => {
-    cb(null,file.originalname)
-  }
-});
-
-const saveFile = multer({ storage : fileStorage});
-
-function getCurrentUser() {
-    var user = firebase.auth().currentUser;
-    currentUser = null;
-    if(user) {
-        var users = firebase.database().ref('/users');
-        users.on('value', (snapshot) => {
-        var data = snapshot.val();
-        for(var rno in data) {
-            var em = data[rno].email;
-            if(em.localeCompare(user.email) == 0) {
-            currentUser = data[rno];
-            }
-        }
-        });
-    }
-    return new Promise((resolve, reject) => resolve(currentUser));
-}
-
-var mime = require('mime');
 
 const keyFilename="./firebase_admin.json"; //replace this with api key file
 const projectId = "digitalcoursefile-efa96" //replace with your project id
@@ -49,6 +22,25 @@ const gcs = new Storage({
 });
 
 const bucket = gcs.bucket(bucketName);
+var currentUser;
+
+function getCurrentUser() {
+  var user = firebase.auth().currentUser;
+  currentUser = null;
+  if(user) {
+      var users = firebase.database().ref('/users');
+      users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      for(var rno in data) {
+          var em = data[rno].email;
+          if(em.localeCompare(user.email) == 0) {
+          currentUser = data[rno];
+          }
+      }
+      });
+  }
+  return new Promise((resolve, reject) => resolve(currentUser));
+}
 
 
 router.get("/", function(req,res,next){
@@ -80,45 +72,35 @@ router.get("/", function(req,res,next){
     });
 });
 
-router.post("/uploadDoc", saveFile.single('filename'),function(req,res,next){
+router.post("/uploadDoc", upload.single('file'),function(req,res,next){
   console.log("Uploading");
-  console.log(req.body);
-  var fileName = req.body.filename;
-  console.log(fileName);
-  if(currentUser.type.localeCompare("Student")==0){
-    const options = {
-      destination:  "documents/" + currentUser.rollNumber + "/myfiles/" + fileName,
+  console.log(req.file);
+  var filename = req.file.originalname;
+  console.log(filename);
+  async function writeFile(path) {
+    await bucket.file(path).createWriteStream({
       metadata: {
         metadata: {
-          visibility : "public"
+          visibility: "public"
         }
       }
-    };
-    bucket.upload(fileName,options ,function(err, file) {
-      if (!err) {
-        console.log('File Uploaded');
-      } else {
-        console.log('Error uploading file: ' + err);
-      }
-    });
-  }else{
-    const options = {
-      destination:  "documents/" + currentUser.courseID + "/" + fileName,
-      metadata: {
-        metadata: {
-          visibility : "public"
-        }
-      }
-    };
-    bucket.upload(fileName,options ,function(err, file) {
-      if (!err) {
-        console.log('File Uploaded');
-      } else {
-        console.log('Error uploading file: ' + err);
-      }
-    });
+    }).end(req.file.buffer)
   }
-  res.redirect("/documents");
+  if(currentUser.type.localeCompare("Student")==0) {
+    var path = "documents/" + currentUser.rollNumber + "/myfiles/" + filename;
+    writeFile(path).catch(console.error)
+    setTimeout(()=> {
+      res.redirect("/documents");
+    }, 5000)
+  }
+  else  {
+    var path = "documents/" + currentUser.facultyID + "/myfiles/" + filename;
+    writeFile(path).catch(console.error)
+    setTimeout(()=> {
+      res.redirect("/documents");
+    }, 5000)
+  }
+
 });
 
 router.post("/delete", function(req,res,next){
