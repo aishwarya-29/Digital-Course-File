@@ -23,6 +23,10 @@
       Saved Documents
       <!-- <div class="ui label">1</div> -->
     </a>
+    <a class="item" id="uploadDoc">
+      Upload document
+      <!-- <div class="ui label">1</div> -->
+    </a>
   </div>
 
   <div class="contentDiv">
@@ -62,7 +66,12 @@
           </table>
     </div>
     <div class="content ui segment" id="two">
-        <h2>Two</h2>
+      <form  method="POST" action = "/documents/uploadDoc">
+        <h2>Upload new file</h2>
+        <br>
+        <input class='button' type="file" id="myFile" name="filename">
+        <input type="submit" name = "Submit">
+        </form>
     </div>
     <div class="content ui segment" id="three">
         <h2>Three</h2>
