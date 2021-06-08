@@ -22,7 +22,13 @@ router.post("/course/:id", function(req,res,next){
 });
 
 router.get("/course/:id", function(req,res,next){
-    res.send(req.params.id);
+    var courseID = req.params.id;
+    var ref = firebase.database().ref('/course/' + courseID);
+        ref.on('value', (snapshot) => {
+        var data = snapshot.val();
+        console.log(data);
+        res.send(snapshot.val());
+    });
 });
 
 
