@@ -5,7 +5,6 @@ var database = firebase.database();
 var storage = require('@google-cloud/storage');
 var admin = require("firebase-admin");
 
-const saltedMd5=require('salted-md5')
 const path=require('path');
 const multer=require('multer')
 const upload=multer({storage: multer.memoryStorage()})
