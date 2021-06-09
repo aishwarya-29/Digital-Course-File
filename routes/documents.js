@@ -159,4 +159,35 @@ router.post("/updateVisibility", function(req,res,next){
 
 
 
+router.get("/getDocs", function(req,res,next){
+  getCurrentUser().then(function(currentUser){
+      if(currentUser.type.localeCompare("Student") == 0) {
+          userID = req.query.stud
+      } else {
+          userID = req.query.stud
+      }
+      bucket.getFiles(function(err, files) {
+          if (!err) {
+            // files is an array of File objects.
+            var myFiles = []
+            files.forEach((file)=>{
+                var directoryURL = file.name.split('/')
+                if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
+                  myFiles.push(file);
+                  //console.log(file.metadata.metadata);
+                }
+                  
+            });
+            //console.log(myFiles,"FDS");
+            res.render("documents/publicDocs", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL});
+          }
+          else {
+              console.log(err);
+          }
+        });
+  });
+});
+
+
+
 module.exports = router;

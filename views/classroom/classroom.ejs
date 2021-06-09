@@ -26,10 +26,11 @@
         </thead>
         <tbody>
           <% var it = 0 %>
-          <% classroom.students.forEach((stud)=> { it+=1; %>
+          <% var to=""%>
+          <% classroom.students.forEach((stud)=> { it+=1; to = "/documents/getDocs?stud="+stud %>
             <tr class="students">
               <td><%=it%></td>
-              <td class="rollNo"><%=stud %></td>
+              <td class="rollNo"><a href= <%= to %>><%=stud %></a></td>
               <td><%=classroom.studentNames[stud]%></td>
             </tr>
             <% }) %>  
