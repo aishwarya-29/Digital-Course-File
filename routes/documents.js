@@ -103,6 +103,20 @@ router.post("/uploadDoc", upload.single('file'),function(req,res,next){
 
 });
 
+router.post("/uploadCourseDoc", upload.single('file'), function(req, res, next) {
+  var filename = req.file.originalname;
+  console.log(filename);
+  async function writeFile(path) {
+    await bucket.file(path).createWriteStream().end(req.file.buffer)
+  }
+
+  var path = 'documents/'+req.body.courseID+'/' + filename;
+  writeFile(path).catch(console.error)
+    setTimeout(()=> {
+      res.redirect("/classroom/"+req.body.courseID);
+    }, 5000)
+});
+
 router.post("/delete", function(req,res,next){
     console.log(req.body);
     var path = req.body.fileNameForm2;

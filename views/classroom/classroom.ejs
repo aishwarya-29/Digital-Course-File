@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
-<h1 id="title">Data Structures</h1>
+<h1 id="title"><%=classroom.Name%></h1>
 <h2 id="subtitle">Class <%= classroom.id %></h2>
 
 <div class="ui three item menu">
@@ -66,6 +66,17 @@
               
             </tbody>
           </table>
+          
+          <br><br>
+          <% if(user.type.localeCompare("Faculty") == 0) { %>
+            <form  method="POST" action = "/documents/uploadCourseDoc" enctype="multipart/form-data">
+              <h3>Upload new file</h3>
+              <br>
+              <input class='button' type="file" id="file" name="file">
+              <input id="courseID" name="courseID" style="display: none;" value="<%=classroom.courseID%>">
+              <input type="submit" name = "Submit">
+              </form>
+          <% } %>
     </div>
     </div>
 </div>

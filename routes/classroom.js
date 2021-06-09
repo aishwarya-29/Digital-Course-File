@@ -47,23 +47,33 @@ router.get("/", function(req,res,next){
     getCurrentUser().then(function(currentUser){
         var userID;
         if(currentUser.type.localeCompare("Student") == 0) {
-            userID = currentUser.rollNumber
+            userID = currentUser.rollNumber;
+            var crooms = database.ref("/classroom");
+            crooms.on("value",(snapshot)=> {
+                var data = snapshot.val();
+                    for(var clid in data) {
+                        var classroom = data[clid];
+                        var studs = classroom.students;
+                        if(studs.includes(userID)) {
+                            console.log(studs);
+                            classrooms.push(classroom);
+                        }
+                    }
+            });
         } else {
-            userID = currentUser.facultyID
-        }
-        
-        var crooms = database.ref("/classroom");
-        crooms.on("value",(snapshot)=> {
-            var data = snapshot.val();
+            userID = currentUser.facultyID;
+            var crooms = database.ref("/classroom");
+            crooms.on("value",(snapshot)=> {
+                var data = snapshot.val();
                 for(var clid in data) {
                     var classroom = data[clid];
-                    var studs = classroom.students;
-                    if(studs.includes(userID)) {
-                        console.log(studs);
+                    if(classroom.facultyID.localeCompare(userID)==0)
                         classrooms.push(classroom);
-                    }
+                    console.log(classroom.facultyID, userID);
                 }
-        });
+            });
+        }
+        
     });
 
     setTimeout(function(){
