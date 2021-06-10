@@ -22,7 +22,11 @@
     <a class="item" id="savedDoc">
       Saved Documents
       <!-- <div class="ui label">1</div> -->
-    </a> 
+    </a>
+    <a class="item" id="uploadDoc">
+      Upload document
+      <!-- <div class="ui label">1</div> -->
+    </a>
   </div>
 
   <div class="contentDiv">
@@ -70,7 +74,40 @@
         </form>
     </div>
     <div class="content ui segment" id="three">
-        <h2>Three</h2>
+        <table class="table table-bordered table-dark table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Content Type</th>
+              <th scope="col">Date of Creation</th>
+              <th scope="col">Accessibility</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% var serNum = 0 %>
+            <% myFiles.forEach(function(file) { %>
+              <% serNum += 1 %>
+              <!-- JSON.stringify(file.metadata) -->
+                <tr>
+                  <th scope="row"><%= serNum %></th>
+                  <td><a class="filename" target="_blank" href="<%=url%><%=file.name%>"><%= file.name.split('/')[3] %></a></td>
+                  <td><%= file.metadata.contentType %></td>
+                  <td><%= file.metadata.timeCreated.split('T')[0] %></td>
+                  <td class="vis" id="sernum<%=serNum%>"><%=file.metadata.metadata.visibility%></td>
+                  <td><i id="delete@<%=file.name%>@<%=serNum%>" title="Delete" data-toggle="modal" data-target="#modal1" class="trash icon delete-btn"></i>  
+                    <% if(file.metadata.metadata.visibility.localeCompare("public") == 0) { %> 
+                      <i id="vis@<%=file.name%>@<%=serNum%>" title="Change visibility" data-toggle="modal" data-target="#modal2" class="eye icon change-btn"></i>
+                    <% } else {%>
+                      <i id="vis@<%=file.name%>@<%=serNum%>" title="Change visibility" data-toggle="modal" data-target="#modal2" class="eye slash icon change-btn"></i>
+                    <% } %>
+                  </td>
+                </tr>
+            <% }) %>
+          </tbody>
+        </table>
+  
     </div>
     <div class="content ui segment" id="four">
         <h2>sdgfh</h2>

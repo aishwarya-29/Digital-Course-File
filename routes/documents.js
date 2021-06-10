@@ -44,7 +44,22 @@ function getCurrentUser() {
 
 
 router.get("/", function(req,res,next){
-    getCurrentUser().then(function(currentUser){
+      var user = firebase.auth().currentUser;
+      var saved = 0;
+      if(user) {
+          var users = firebase.database().ref('/users');
+          users.on('value', (snapshot) => {
+          var data = snapshot.val();
+          for(var rno in data) {
+              var em = data[rno].email;
+              if(em.localeCompare(user.email) == 0) {
+              saved = data[rno].saved;
+              }
+          }
+          });
+      }    
+  
+      getCurrentUser().then(function(currentUser){
         if(currentUser.type.localeCompare("Student") == 0) {
             userID = currentUser.rollNumber
         } else {
@@ -62,6 +77,58 @@ router.get("/", function(req,res,next){
                   }
                     
               });
+              if(saved>0){
+                  var num =0 ;
+                    var saved = [];
+                    var user = firebase.auth().currentUser;
+                    if(user) {
+                      var users = firebase.database().ref('/users');
+                      users.on('value', (snapshot) => {
+                      var data = snapshot.val();
+                      for(var rno in data) {
+                          var em = data[rno].email;
+                          if(em.localeCompare(user.email) == 0) {
+                          num = Number(data[rno].saved);
+                          }
+                      }
+                      });
+                    }
+                    if(num>0){
+                      var users = firebase.database().ref('/users/'+ user.rollNumber + "/docs");
+                      users.on('value', (snapshot) => {
+                      var data = snapshot.val();
+                      for(var i in data) {
+                          saved[i] = data[i]
+                      }
+                      });
+                    }
+                    
+                    var mySavedFiles = []
+                    var i=0;
+                    for(i=0;i<num;i++){
+                        bucketName = `${saved[i]}.appspot.com`;
+                        const {Storage} = require('@google-cloud/storage');
+                        const gcs = new Storage({
+                            projectId,
+                            keyFilename
+                        });
+                        const bucket = gcs.bucket(bucketName);
+                        bucket.getFiles(function(err, files) {
+                        if (!err) {
+                    // files is an array of File objects
+                        files.forEach((file)=>{
+                        var directoryURL = file.name.split('/')
+                        if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
+                          mySavedFiles.push(file);
+                          //console.log(file.metadata.metadata);
+                        }
+                          
+                    });
+                    //console.log(myFiles,"FDS");
+                    //res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL, mySavedFiles: mySavedFiles});
+                  }
+                });}
+              }
               //console.log(myFiles,"FDS");
               res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL});
             }
@@ -129,6 +196,41 @@ router.post("/delete", function(req,res,next){
       res.redirect("/documents");
 });
 
+router.post("/save", function(req,res,next){
+  var path = req.body.fileNameForm2;
+  console.log(path,"aeff");
+  console.log("And : " + req.query.stud)
+  var user = firebase.auth().currentUser;
+  var saved = 0;
+  if(user) {
+      var users = firebase.database().ref('/users');
+      users.on('value', (snapshot) => {
+      var data = snapshot.val();
+      for(var rno in data) {
+          var em = data[rno].email;
+          if(em.localeCompare(user.email) == 0) {
+          saved = data[rno].saved;
+          }
+      }
+      });
+  }
+  console.log(saved);
+  saved = Number(saved)+1;
+  firebase.database().ref('users/' + user.rollNumber).set({
+       saved : saved,
+  });
+  firebase.database().ref('users/' + user.rollNumber + '/docs').set({
+    saved : path,
+});
+  res.redirect("/documents/getDocs?stud="+req.query.stud);
+});
+
+
+
+
+
+
+
 router.post("/updateVisibility", function(req,res,next){
     var path = req.body.fileNameForm;
     var VISI = req.body.visForm;
@@ -161,6 +263,38 @@ router.post("/updateVisibility", function(req,res,next){
 
 
 router.get("/getDocs", function(req,res,next){
+  var num =0 ;
+  var saved = [];
+  var i = 0;
+  var present = [];
+  var fil = 0;
+  var user = firebase.auth().currentUser;
+  if(user) {
+    var users = firebase.database().ref('/users');
+    users.on('value', (snapshot) => {
+    var data = snapshot.val();
+    for(var rno in data) {
+        var em = data[rno].email;
+        if(em.localeCompare(user.email) == 0) {
+        num = Number(data[rno].saved);
+        }
+    }
+    });
+  }
+  if(num>0){
+    var users = firebase.database().ref('/users/'+req.query.stud + "/docs");
+    users.on('value', (snapshot) => {
+    var data = snapshot.val();
+    for(var i in data) {
+        saved[i] = data[i]
+    }
+    });
+  }
+  
+  for(i=0;i<num;i++){
+    console.log(saved[i]);
+  }
+  
   getCurrentUser().then(function(currentUser){
       if(currentUser.type.localeCompare("Student") == 0) {
           userID = req.query.stud
@@ -172,15 +306,22 @@ router.get("/getDocs", function(req,res,next){
             // files is an array of File objects.
             var myFiles = []
             files.forEach((file)=>{
+                fil = fil + 1;
+                present.push(0);
                 var directoryURL = file.name.split('/')
                 if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
                   myFiles.push(file);
+                  for(i=0;i<num;i++){
+                    if(directoryURL==saved[i]){
+                      present[fil]=1;
+                    } 
+                  }
                   //console.log(file.metadata.metadata);
                 }
                   
             });
             //console.log(myFiles,"FDS");
-            res.render("documents/publicDocs", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL});
+            res.render("documents/publicDocs", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL, stud: req.query.stud,present: present});
           }
           else {
               console.log(err);
