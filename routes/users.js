@@ -456,7 +456,7 @@ router.get("/student/:rollno", function(req,res,next){
         });
     setTimeout(()=>{
       console.log(profileInformation,classrooms,myFiles);
-      res.render("users/profile",{user: profileInformation, classrooms: classrooms, files: myFiles});
+      res.render("users/profile",{user2: profileInformation, classrooms: classrooms, files: myFiles});
     },2000);
 });
 

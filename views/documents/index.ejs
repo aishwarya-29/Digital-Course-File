@@ -23,10 +23,6 @@
       Saved Documents
       <!-- <div class="ui label">1</div> -->
     </a>
-    <a class="item" id="uploadDoc">
-      Upload document
-      <!-- <div class="ui label">1</div> -->
-    </a>
   </div>
 
   <div class="contentDiv">
@@ -78,33 +74,16 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Content Type</th>
-              <th scope="col">Date of Creation</th>
-              <th scope="col">Accessibility</th>
-              <th scope="col"></th>
+              <th scope="col">File Name</th>
             </tr>
           </thead>
           <tbody>
-            <% var serNum = 0 %>
-            <% myFiles.forEach(function(file) { %>
-              <% serNum += 1 %>
-              <!-- JSON.stringify(file.metadata) -->
-                <tr>
-                  <th scope="row"><%= serNum %></th>
-                  <td><a class="filename" target="_blank" href="<%=url%><%=file.name%>"><%= file.name.split('/')[3] %></a></td>
-                  <td><%= file.metadata.contentType %></td>
-                  <td><%= file.metadata.timeCreated.split('T')[0] %></td>
-                  <td class="vis" id="sernum<%=serNum%>"><%=file.metadata.metadata.visibility%></td>
-                  <td><i id="delete@<%=file.name%>@<%=serNum%>" title="Delete" data-toggle="modal" data-target="#modal1" class="trash icon delete-btn"></i>  
-                    <% if(file.metadata.metadata.visibility.localeCompare("public") == 0) { %> 
-                      <i id="vis@<%=file.name%>@<%=serNum%>" title="Change visibility" data-toggle="modal" data-target="#modal2" class="eye icon change-btn"></i>
-                    <% } else {%>
-                      <i id="vis@<%=file.name%>@<%=serNum%>" title="Change visibility" data-toggle="modal" data-target="#modal2" class="eye slash icon change-btn"></i>
-                    <% } %>
-                  </td>
-                </tr>
-            <% }) %>
+            <% var i=0; for(id in savedDocs) { %>
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <th><a class="filename" target="_blank" href="<%=savedDocs[id]%>"><%=savedDocs[id].split('/')[savedDocs[id].split('/').length-1]%></th></a>
+              </tr>
+            <% i+=1;} %>
           </tbody>
         </table>
   

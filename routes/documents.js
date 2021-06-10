@@ -4,6 +4,7 @@ var firebase = require('firebase');
 var database = firebase.database();
 var storage = require('@google-cloud/storage');
 var admin = require("firebase-admin");
+const crypto = require("crypto");
 
 const path=require('path');
 const multer=require('multer')
@@ -43,99 +44,38 @@ function getCurrentUser() {
 
 
 router.get("/", function(req,res,next){
-      var user = firebase.auth().currentUser;
-      var saved = 0;
-      if(user) {
-          var users = firebase.database().ref('/users');
-          users.on('value', (snapshot) => {
-          var data = snapshot.val();
-          for(var rno in data) {
-              var em = data[rno].email;
-              if(em.localeCompare(user.email) == 0) {
-              saved = data[rno].saved;
+  getCurrentUser().then(function(currentUser){
+    if(currentUser.type.localeCompare("Student") == 0) {
+        userID = currentUser.rollNumber
+    } else {
+        userID = currentUser.facultyID
+    }
+    bucket.getFiles(function(err, files) {
+        if (!err) {
+          // files is an array of File objects.
+          var myFiles = []
+          files.forEach((file)=>{
+              var directoryURL = file.name.split('/')
+              if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
+                myFiles.push(file);
+                //console.log(file.metadata.metadata);
               }
-          }
+                
           });
-      }    
-  
-      getCurrentUser().then(function(currentUser){
-        if(currentUser.type.localeCompare("Student") == 0) {
-            userID = currentUser.rollNumber
-        } else {
-            userID = currentUser.facultyID
+          //console.log(myFiles,"FDS");
+          var savedDocs = firebase.database().ref('/docs').child(userID);
+          savedDocs.on('value', (snapshot)=> {
+            const data = snapshot.val();
+            savedDocs = data;
+            console.log(data);
+          }); 
+          res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL, savedDocs: savedDocs});
         }
-        bucket.getFiles(function(err, files) {
-            if (!err) {
-              // files is an array of File objects.
-              var myFiles = []
-              files.forEach((file)=>{
-                  var directoryURL = file.name.split('/')
-                  if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
-                    myFiles.push(file);
-                    //console.log(file.metadata.metadata);
-                  }
-                    
-              });
-              if(saved>0){
-                  var num =0 ;
-                    var saved = [];
-                    var user = firebase.auth().currentUser;
-                    if(user) {
-                      var users = firebase.database().ref('/users');
-                      users.on('value', (snapshot) => {
-                      var data = snapshot.val();
-                      for(var rno in data) {
-                          var em = data[rno].email;
-                          if(em.localeCompare(user.email) == 0) {
-                          num = Number(data[rno].saved);
-                          }
-                      }
-                      });
-                    }
-                    if(num>0){
-                      var users = firebase.database().ref('/users/'+ user.rollNumber + "/docs");
-                      users.on('value', (snapshot) => {
-                      var data = snapshot.val();
-                      for(var i in data) {
-                          saved[i] = data[i]
-                      }
-                      });
-                    }
-                    
-                    var mySavedFiles = []
-                    var i=0;
-                    for(i=0;i<num;i++){
-                        bucketName = `${saved[i]}.appspot.com`;
-                        const {Storage} = require('@google-cloud/storage');
-                        const gcs = new Storage({
-                            projectId,
-                            keyFilename
-                        });
-                        const bucket = gcs.bucket(bucketName);
-                        bucket.getFiles(function(err, files) {
-                        if (!err) {
-                    // files is an array of File objects
-                        files.forEach((file)=>{
-                        var directoryURL = file.name.split('/')
-                        if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
-                          mySavedFiles.push(file);
-                          //console.log(file.metadata.metadata);
-                        }
-                          
-                    });
-                    //console.log(myFiles,"FDS");
-                    //res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL, mySavedFiles: mySavedFiles});
-                  }
-                });}
-              }
-              //console.log(myFiles,"FDS");
-              res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL});
-            }
-            else {
-                console.log(err);
-            }
-          });
-    });
+        else {
+            console.log(err);
+        }
+      });
+});
 });
 
 router.post("/uploadDoc", upload.single('file'),function(req,res,next){
@@ -225,7 +165,16 @@ router.post("/save", function(req,res,next){
 });
 
 
+router.post("/saveDoc/:userID", function(req,res){
+  var id = req.params.userID;
+  var docURL = req.body.docURL;
+  const docID = crypto.randomBytes(16).toString("hex");
+  var docs = firebase.database().ref('/docs').child(id).child(docID).set(docURL);
 
+  setTimeout(()=>{
+    res.redirect("/documents");
+  }, 1000);
+});
 
 
 
