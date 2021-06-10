@@ -31,5 +31,25 @@ router.get("/course/:id", function(req,res,next){
     });
 });
 
+router.get("/student/:id", function(req,res,next){
+    var userID = req.params.id;
+    var ref = firebase.database().ref('/users/' + userID);
+        ref.on('value', (snapshot) => {
+        var data = snapshot.val();
+        console.log(data);
+        res.send(snapshot.val());
+    });
+});
+
+router.get("/faculty/:id", function(req,res,next){
+    var userID = req.params.id;
+    var ref = firebase.database().ref('/users/' + userID);
+        ref.on('value', (snapshot) => {
+        var data = snapshot.val();
+        console.log(data);
+        res.send(snapshot.val());
+    });
+});
+
 
 module.exports = router;

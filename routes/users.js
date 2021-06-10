@@ -184,7 +184,7 @@ router.post('/student/login', function(req,res,next){
         var data = snapshot.val();
         for(var rno in data) {
           var em = data[rno].email;
-          if(em.localeCompare(user.email) == 0) {
+          if(em && em.localeCompare(user.email) == 0) {
             res.locals.user = data[rno];       
             break;
           }
