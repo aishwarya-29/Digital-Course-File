@@ -10,9 +10,15 @@
     <% classrooms.forEach((croom)=>{ %>
         <a href="/classroom/<%=croom.id%>">
         <div class="card">
-            <h5>Classroom ID: <%= croom.id%></h5>
-            <h5>Subject: <%= croom.Name %></h5>
-            <h5>Faculty: <%= croom.Faculty %> </h5>
+            <div class="card-title"><%= croom.id %></div>
+            <div class="subject">
+                <%= croom.Name %>
+            </div>
+            <div class="img">
+                <img class="imgclass" src="http://storage.googleapis.com/digitalcoursefile-efa96.appspot.com/course%2F<%=croom.courseID%>.jpeg">
+            </div>
+            <br>
+            <p class="fac">Faculty: <%= croom.Faculty %> </p>
         </div>
         </a>
     <% }) %>

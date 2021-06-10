@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>   
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/classroom/classroom.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/course/courseInfo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<h1 id="title"><%=classroom.Name%></h1>
+<h2 id="subtitle">Class <%= classroom.id %></h2>
+
+<div class="ui three item menu">
+    <a class="active item menuitem" id="menu1">List of Students</a>
+    <a class="item menuitem" id="menu2">Documents</a>
+    <a class="item menuitem" id="menu3">Course Information</a>
+</div>
+
+<div class="content container" id="div1">
+    <table class="ui single line table">
+        <thead>
+          <tr>
+            <th>S. No.</th>
+            <th>Roll Number</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% var it = 0 %>
+          <% classroom.students.forEach((stud)=> { it+=1; %>
+            <tr class="students">
+              <td><%=it%></td>
+              <td class="rollNo"><%=stud %></td>
+              <td><%=classroom.studentNames[stud]%></td>
+            </tr>
+            <% }) %>  
+        </tbody>
+      </table>
+</div>
+<div class="content container" id="div2">
+  <div class="contentDiv">
+    <div>
+          <table class="table table-bordered table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Date of Creation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(typeof files != 'undefined') { %>
+                <% serNum = 0 %>
+                <% files.forEach(function(file) { %>
+                  <% serNum += 1 %>
+                    <tr>
+                      <th scope="row"><%= serNum %></th>
+                      <td><a class="filename" target="_blank" href="<%=url%><%=file.name%>"><%= file.name.split('/')[2] %></a></td>
+                      <td><%= file.metadata.contentType %></td>
+                      <td><%= file.metadata.timeCreated.split('T')[0] %></td>
+                    </tr>
+                <% }) %>
+              <% } else { %>
+              <% } %>
+              <% var serNum = 0 %>
+              
+            </tbody>
+          </table>
+          
+          <br><br>
+          <% if(user.type.localeCompare("Faculty") == 0) { %>
+            <form  method="POST" action = "/documents/uploadCourseDoc" enctype="multipart/form-data">
+              <h3>Upload new file</h3>
+              <br>
+              <input class='button' type="file" id="file" name="file">
+              <input id="courseID" name="courseID" style="display: none;" value="<%=classroom.courseID%>">
+              <input type="submit" name = "Submit">
+              </form>
+          <% } %>
+    </div>
+    </div>
+</div>
+<div class="content container" id="div3">
+  <p style="display: none;" id="courseIDtag"><%=classroom.courseID%></p>
+  <h1 id="title2"></h1>
+<div id="aboutCourse">
+    <div id="leftDiv">
+        <img id="imgtag" src="" alt="image">
+    </div>
+    <div id="rightDiv">
+        <h7><strong>Course ID - </strong><span id="idtag"></span></h7> <br>
+        <h7><strong>Course Name -</strong> <span id="nametag"></span></h7> <br>
+        <h7><strong>Credits -</strong> <span id="creditstag"></span></h7> <br>
+        <h7><strong>Department ID -</strong> <span id="depttag"></span></h7> <br>
+        <strong></strong>
+    </div>
+    
+</div>
+
+
+</div>
+
+
+
+<%- include ("../partials/footer") %>
+<script type="text/javascript" src="/javascripts/classroom/classroom.js"></script>

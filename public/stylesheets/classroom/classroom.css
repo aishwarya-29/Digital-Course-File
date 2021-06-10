@@ -1,0 +1,25 @@
+#title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #E63946;
+}
+
+#subtitle {
+    text-align: center;
+}
+
+.content {
+    display: none;
+}
+
+#div1 {
+    display: block;
+}
+
+.filename {
+    color: white !important;
+}
+
+h3 {
+    font-family: 'Rubik', sans-serif;
+}

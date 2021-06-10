@@ -7,6 +7,10 @@
     float: left !important;
 }
 
+.vis {
+    text-transform: capitalize;
+}
+
 .content {
     display: none;
     width: 60rem;
@@ -20,4 +24,8 @@
 
 .filename {
     color: white !important;
+}
+
+.icon:hover {
+    cursor: pointer;
 }
