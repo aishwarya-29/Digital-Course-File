@@ -3,7 +3,6 @@ var router = express.Router();
 var firebase = require('firebase');
 var database = firebase.database();
 
-var mime = require('mime');
 
 const keyFilename="./firebase_admin.json"; //replace this with api key file
 const projectId = "digitalcoursefile-efa96" //replace with your project id

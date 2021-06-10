@@ -1,5 +1,3 @@
-var mime = require('mime');
-
 const keyFilename="./firebase_admin.json"; //replace this with api key file
 const projectId = "digitalcoursefile-efa96" //replace with your project id
 const bucketName = `${projectId}.appspot.com`;
