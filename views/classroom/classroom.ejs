@@ -27,7 +27,7 @@
         <tbody>
           <% var it = 0 %>
           <% var to=""%>
-          <% classroom.students.forEach((stud)=> { it+=1; to = "/documents/getDocs?stud="+stud %>
+          <% classroom.students.forEach((stud)=> { it+=1; to = "/users/student/"+stud %>
             <tr class="students">
               <td><%=it%></td>
               <td class="rollNo"><a href= <%= to %>><%=stud %></a></td>

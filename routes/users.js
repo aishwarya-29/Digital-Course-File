@@ -48,6 +48,7 @@ router.get('/faculty/login', function(req,res,next){
   res.render('users/facultyLogin');
 });
 
+
 router.get('/student/profile', function(req,res,next){
   var profileInformation = {
     name: "Hello",

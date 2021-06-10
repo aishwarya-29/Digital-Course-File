@@ -1,0 +1,11 @@
+.btn {
+    font-family: 'Montserrat', sans-serif; 
+    border-radius:12px;
+    background-color: #A8DADC;  
+    float:right;
+}
+
+.btn:hover{
+    background-color: aliceblue;
+    border:2px solid #457B9D;
+}
