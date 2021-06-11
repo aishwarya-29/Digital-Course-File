@@ -27,7 +27,7 @@
         <tbody>
           <% var it = 0 %>
           <% var to=""%>
-          <% classroom.students.forEach((stud)=> { it+=1; to = "/documents/getDocs?stud="+stud %>
+          <% classroom.students.forEach((stud)=> { it+=1; to = "/users/student/"+stud %>
             <tr class="students">
               <td><%=it%></td>
               <td class="rollNo"><a href= <%= to %>><%=stud %></a></td>
@@ -77,6 +77,8 @@
               <input id="courseID" name="courseID" style="display: none;" value="<%=classroom.courseID%>">
               <input type="submit" name = "Submit">
               </form>
+              <br>
+              <br>
           <% } %>
     </div>
     </div>

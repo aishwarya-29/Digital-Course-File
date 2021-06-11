@@ -56,6 +56,7 @@ router.get("/", function(req,res,next){
           var myFiles = []
           files.forEach((file)=>{
               var directoryURL = file.name.split('/')
+              console.log(directoryURL);
               if(directoryURL[0].localeCompare("documents") == 0 && directoryURL[1].localeCompare(userID) == 0 && directoryURL[2].localeCompare("myfiles") == 0 && directoryURL[3].length > 0){
                 myFiles.push(file);
                 //console.log(file.metadata.metadata);
@@ -69,7 +70,10 @@ router.get("/", function(req,res,next){
             savedDocs = data;
             console.log(data);
           }); 
-          res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL, savedDocs: savedDocs});
+          setTimeout(()=>{
+             res.render("documents/index", {myFiles: myFiles, url: process.env.FIREBASE_STORAGE_URL, savedDocs: savedDocs});
+          }, 1000);
+         
         }
         else {
             console.log(err);
@@ -119,7 +123,7 @@ router.post("/uploadCourseDoc", upload.single('file'), function(req, res, next) 
   var path = 'documents/'+req.body.courseID+'/' + filename;
   writeFile(path).catch(console.error)
     setTimeout(()=> {
-      res.redirect("/classroom/"+req.body.courseID);
+      res.redirect("/classroom");
     }, 5000)
 });
 

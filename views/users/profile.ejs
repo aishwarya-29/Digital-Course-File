@@ -102,7 +102,7 @@
                       <td><%= file.metadata.timeCreated.split('T')[0] %></td>
                       <form method="POST" action="/documents/saveDoc/<%=user.rollNumber%>">
                         <input style="display: none;" id="docURL" name="docURL" value="<%=url%><%=file.name%>">
-                      <td class="save-class"><button class="save-btn" type="submit"></button></td>
+                      <td class="save-class"><button class="save-btn positive" type="submit">Save</button></td>
                       </form>
                     </tr>
                 <% }) %>

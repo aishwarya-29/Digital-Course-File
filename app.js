@@ -38,7 +38,6 @@ app.use(function(req, res, next) {
       var data = snapshot.val();
       for(var rno in data) {
         var em = data[rno].email;
-        console.log(data[rno]);
         if(em.localeCompare(user.email) == 0) {
           res.locals.user = data[rno];
         }

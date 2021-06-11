@@ -83,6 +83,7 @@ router.get("/", function(req,res,next){
 
 router.get("/:id", function(req,res,next){
     var id = req.params.id;
+    console.log(id);
     var ref = firebase.database().ref('/classroom/' + id);
         ref.on('value', (snapshot) => {
         var data = snapshot.val();
