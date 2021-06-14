@@ -164,7 +164,7 @@ router.post("/save", function(req,res,next){
   });
   firebase.database().ref('users/' + user.rollNumber + '/docs').set({
     saved : path,
-});
+  });
   res.redirect("/documents/getDocs?stud="+req.query.stud);
 });
 

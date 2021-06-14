@@ -113,28 +113,6 @@ router.get("/:id", function(req,res,next){
     
 });
 
-
-
-
-
-// const filePath = `./public/docs/DS01COthumb.jpg`;
-// const uploadTo = `course/DS01COthumb.jpg`;
-// const fileMime = mime.getType(filePath);
- 
- 
-// bucket.upload(filePath,{
-//     destination:uploadTo,
-//     public:true,
-//     metadata: {contentType: fileMime,cacheControl: "public, max-age=300"}
-// }, function(err, file) {
-//     if(err)
-//     {
-//         console.log(err);
-//         return;
-//     }
-//     console.log(createPublicFileURL(uploadTo));
-// });
- 
  
 function createPublicFileURL(storageName) {
     return `http://storage.googleapis.com/${bucketName}/${encodeURIComponent(storageName)}`;
